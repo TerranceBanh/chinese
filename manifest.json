@@ -1,0 +1,9 @@
+{
+	"name": "English - Chinese Quiz",
+	"short_name": "Quiz",
+	"start_url": ".",
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "white",
+	"theme_color": "yellow"
+}

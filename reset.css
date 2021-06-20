@@ -1,0 +1,49 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  min-inline-size: 0;
+  
+  outline: none;
+}
+
+html {
+  font-family: Arial;
+  font-size: 10px;
+}
+h1 {
+  font-size: 8rem;
+  font-weight: 1000;
+}
+h2 {
+  font-size: 7rem;
+  font-weight: 100;
+}
+h3 {
+  font-size: 6rem;
+  font-weight: 700;
+}
+h4 {
+  font-size: 5rem;
+  font-weight: 600;
+}
+h5 {
+  font-size: 4rem;
+  font-weight: 500;
+}
+h6 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+p {
+  font-size: 2rem;
+  font-weight: 300; 
+}
+
+
+/* 
+  Tahoma > less memory
+  Arial > easy to read
+*/
