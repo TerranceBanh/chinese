@@ -234,6 +234,7 @@ customElements.define('question-decks',
 					break
 				}
 			}
+      // FIX WIDTH WHEN NO SCROLL BAR
 
       // Click outside Settings (1)
       let outsideClicked = false
@@ -257,6 +258,7 @@ customElements.define('question-decks',
 				slider.addEventListener('input', () => number.value = slider.value)
 				number.addEventListener('keypress', e => !!e.key.match(/[0-9]/) ? null : e.preventDefault())
 				number.addEventListener('keydown', e => e.keyCode === 13 && number.value === '' ? number.value = number.min : null)
+        number.addEventListener('keydown', function (e) {if (e.keyCode === 13) this.blur()} )
 				number.addEventListener('input', () => {
 					if (parseInt(number.value) > parseInt(number.max)) {
 						number.value = number.max
