@@ -257,23 +257,25 @@ customElements.define('question-decks',
 				  .map(a => /* 1 */ getComputedWidth(a).ceil())
 				  .reduce((a,b) => a > b ? a : b)
 
-      // Adjusts min & max based on Adjusted button widths
-			listing.style.minWidth = buttonLongWidth() + 'px'
-			listing.style.maxWidth = (sqrtTotalButtons * buttonLongWidth()) + getScrollbarWidth() + 'px'
+      window.addEventListener('load', () => {
+        // Adjusts min & max based on Adjusted button widths
+			  listing.style.minWidth = buttonLongWidth() + 'px'
+			  listing.style.maxWidth = (sqrtTotalButtons * buttonLongWidth()) + getScrollbarWidth() + 'px'
 
-			// Changes All Answer Widths To Matching Widths
-			buttons.map(a => a.style.width = buttonLongWidth() + 'px')
-      buttons.map(a => a.style.height = buttonLongWidth() + 'px')
+			  // Changes All Answer Widths To Matching Widths
+			  buttons.map(a => a.style.width = buttonLongWidth() + 'px')
+        buttons.map(a => a.style.height = buttonLongWidth() + 'px')
 
-			// Adjust Card Width Based On Longest Answer Width
-			for (let i = sqrtTotalButtons; i > 0; i--) {
-				if (currentContainerWidth() < i * buttonLongWidth()) continue
-				else {
-					listing.style.width = i * (buttonLongWidth() + (getScrollbarWidth() / sqrtTotalButtons)) + 'px'
-					break
-				}
-			}
-      // FIX WIDTH WHEN NO SCROLL BAR
+			  // Adjust Card Width Based On Longest Answer Width
+			  for (let i = sqrtTotalButtons; i > 0; i--) {
+				  if (currentContainerWidth() < i * buttonLongWidth()) continue
+				  else {
+					  listing.style.width = i * (buttonLongWidth() + (getScrollbarWidth() / sqrtTotalButtons)) + 'px'
+					  break
+				  }
+			  }
+      })
+
 
       // Click outside Settings (1)
       let outsideClicked = false
