@@ -2,6 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden; /* To Fix Double Scroll iOS */
 }
 
 .body {
