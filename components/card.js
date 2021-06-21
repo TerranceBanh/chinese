@@ -101,7 +101,7 @@ customElements.define('card-',
 				`<checkbox-label>${a}</checkbox-label>`
 			).join('')
 
-      container.style.height = globalData.elements.appHeight.value.parseInt() + 70 + 'vh'
+      container.style.height = globalData.limit.appHeight + 70 + 'vh'
 
 			{// GENERATE QUESTIONS & ANSWERS START /* 2 */
 				generateQuestion()
@@ -302,7 +302,7 @@ customElements.define('card-',
 								  
 								  this.style.display = 'none'
 								  document.querySelector('score-').style.display = 'block'
-    						}, globalData.delay)
+    						}, globalData.limit.delay)
 							}
               
 						}// DISPLAY SCORE
@@ -319,7 +319,7 @@ customElements.define('card-',
                 grid()
 							}// REALIGN ELEMENTS END
 							submit.disabled = false
-						}, globalData.delay)
+						}, globalData.limit.delay)
 					}// GENERATE NEW QUESTION & ANSWERS	END
 
 					

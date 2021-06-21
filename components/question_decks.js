@@ -35,6 +35,11 @@ questionDecks.template.html = ({}) => `
 				  <input type="number" min="1" max="3" value="3" class="correct-answer-number">
 				  <input type="range" min="1" max="3" value="3" class="correct-answer-slider">
 			  </div>
+        <div class="next-question-delay">
+				  <label>Next Question Delay</label>
+				  <input type="number" min="0" max="2000" value="600" class="next-question-delay-number">
+				  <input type="range" min="0" max="2000" value="600" class="next-question-delay-slider">
+			  </div>
         <div class="app-height">
 				  <label>App Height (To Fix Mobile View)</label>
 				  <input type="number" min="0" max="30" value="15" class="app-height-number">
@@ -164,6 +169,34 @@ customElements.define('question-decks',
       const settings = $(this)('.settings-menu-container')
       const settingsButton = $(this)('.settings-button')
 
+//      const { question, answer, correctAnswer, appHeight, nextQuestionDelay } = 
+//
+//        $(this)('.settings-menu').children.values().filter(a => a.classList[0] !== 'settings-title').map(a => a.classList[0])
+//
+//          .map(a => ({ 
+//            name: a,
+//            slider: $(this)(`.${a}`), 
+//            number: $(this)(`.${a}`),
+//          }))
+//
+//          .reduce((a, { name, slider, number }, c) => {
+//            let obj = {}
+//            const camalCase = (name) => name
+//              .split('-')
+//              .map((a,b) => b === 0 ? a : a.letterUp(0))
+//              .join('')
+//
+//            if (c === 1) {
+//              obj
+//                .defineProperty(camalCase(a.name), { value: { slider: a.slider, number: a.number } })
+//                .defineProperty(camalCase(name), { value: { slider, number } })
+//            }
+//            else obj.defineProperty(camalCase(name), { value: { slider, number } })
+//            console.log(obj)
+//            return obj
+//          })
+
+
 	    const question = {
 		    slider: $(this)('.question-slider'),
 		    number: $(this)('.question-number')	
@@ -184,11 +217,17 @@ customElements.define('question-decks',
 		    number: $(this)('.app-height-number')	
 	    }
 
+      const nextQuestionDelay = {
+		    slider: $(this)('.next-question-delay-slider'),
+		    number: $(this)('.next-question-delay-number')
+      }
+
 			// MAKE INTO COMPONENT
 			const generate = (data) => {
 				globalData.limit.questions = question.number.value
 				globalData.limit.answers = answer.number.value
 				globalData.limit.correctAnswers = correctAnswer.number.value
+        globalData.limit.delay = nextQuestionDelay.number.value
 				deckGen(data)
 				this.style.display = 'none'
 				const card = $('<card-></card->')
@@ -253,8 +292,19 @@ customElements.define('question-decks',
         settings.style.visibility = 'visible'
       })
 
-			;[question, answer, correctAnswer, appHeight].forEach(({ number, slider}, b) => {
-				const counters = ['question', 'answer', 'correctAnswer']
+      const settingNames = 
+      $(this)('.settings-menu')
+        .children
+        .values()
+        .filter(a => a.classList[0] !== 'settings-title')
+        .map(a => 
+          a
+            .classList[0]
+            .split('-')
+            .map((a,b) => b === 0 ? a : a.letterUp(0))
+            .join('')
+        )
+			;[question, answer, correctAnswer, nextQuestionDelay, appHeight].forEach(({ number, slider}, b) => {
 				slider.addEventListener('input', () => number.value = slider.value)
 				number.addEventListener('keypress', e => !!e.key.match(/[0-9]/) ? null : e.preventDefault())
 				number.addEventListener('keydown', e => e.keyCode === 13 && number.value === '' ? number.value = number.min : null)
@@ -268,31 +318,40 @@ customElements.define('question-decks',
 					else slider.value = number.value
 				})
 				;[slider, number]
-					.forEach(a => a.addEventListener('blur', 
-						() => number.value === '0' ? number.value = number.min : null
-					))
+					.forEach(a => {
+            a.addEventListener('blur', () => 
+              number.value === '0' ? number.value = number.min : null
+            )
+            a.addEventListener('input', () => { 
+              localStorage.setItem(settingNames[b], a.value)
+            })
+					})
+
+        window.addEventListener('load', () => {
+          if (localStorage.getItem(settingNames[b]) !== null) {
+            slider.value = localStorage.getItem(settingNames[b])
+            number.value = localStorage.getItem(settingNames[b])
+          }
+        })
+
+
 			})
 
-      // Keep App Height Settings
-      if (!!document.cookie) document.querySelector('.body').style.height = decodeURIComponent(document.cookie).split('=')[1] + 'vh'
-      appHeight.map((a,b) => {
-        if (a[0] === 'number') globalData.elements.appHeight = a[1]
-        window.addEventListener('load', () => {
-          const cookieElementHeight = decodeURIComponent(document.cookie).split('=')[1]
-          if (!!cookieElementHeight) {
-            a[1].value = cookieElementHeight.parseInt() - 70
-            listing.style.height = cookieElementHeight.parseInt() + 'vh'
-          }
-        })        
+      // App Height Settings
+      const appHeightStore = localStorage.getItem('appHeight').parseInt()
+      document.querySelector('.body').style.height = appHeightStore + 70 + 'vh'
+      listing.style.height = appHeightStore + 70 + 'vh'
+      globalData.limit.appHeight = appHeightStore
+      appHeight.map(a => {
         a[1].addEventListener('input', () => {
-          const date = new Date()
-          const height = 70 + parseInt(a[1].value)
-          date.setTime(date.getTime() + (365*24*60*60*1000))
-          document.querySelector('.body').style.height = `${height}` + 'vh'
-          listing.style.height = `${height}` + 'vh'
-          document.cookie = `appHeight=${height}; expires=${date.UTCString}`
+          document.querySelector('.body').style.height = a[1].value.parseInt() + 70 + 'vh'
+          listing.style.height = a[1].value.parseInt() + 70 + 'vh'
+          globalData.limit.appHeight = a[1].value.parseInt()
         })
       })
+
+      
+
     }
     
   }

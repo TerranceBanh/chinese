@@ -162,7 +162,7 @@ customElements.define('button-crud',
         generateFraction()        
         btn.addEventListener('click', () => 
           outputs.length + 2 <= parseInt(questions) ?
-          setTimeout(() => generateFraction(), globalData.delay) :
+          setTimeout(() => generateFraction(), globalData.limit.delay) :
           null
         )
       }// Generate Question Count

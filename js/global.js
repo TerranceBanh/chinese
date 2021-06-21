@@ -2,7 +2,9 @@ const globalData = {
 	limit: {
 		questions: 0,
 		answers: 0,
-		correctAnswers: 0
+		correctAnswers: 0,
+    delay: 500,
+    appHeight: '',
 	},
 	current: 0,
 	answersData: [], // Server will send question and answers set to here on deck of choice
@@ -15,7 +17,6 @@ const globalData = {
     correct: correctSound,
     incorrect: incorrectSound,
     card: '',
-    appHeight: '',
   },
 	inputs: [],
 	outputs: [],
@@ -39,7 +40,7 @@ const globalData = {
 		miss1: '#D90',
 		miss2: '#FFA',
 	},
-	delay: 500
+	
 }
 
 const globalMethods = {
