@@ -45,6 +45,8 @@ questionDecks.template.html = ({}) => `
 				  <input type="number" min="0" max="30" value="15" class="app-height-number">
 				  <input type="range" min="0" max="30" value="15" class="app-height-slider">
 			  </div>
+        
+        <a href="https://liberapay.com/TerranceBanh/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
       </div>
 		</div>
 	</div>
@@ -93,6 +95,8 @@ questionDecks.template.css = ({
 			${ flex({ wrap: 'wrap', align: 'center', justify: 'center' })}
       background: khaki;
       display: none;
+      align-items: center;
+      justify-content: center;
 		}
     .settings-button {
 			position: absolute;
@@ -274,6 +278,7 @@ customElements.define('question-decks',
             // Some how this comes to be off by 1 pixel running it once
 					  listing.style.width = (i * buttonLongWidth()) + getScrollbarWidth() + 'px'
 					  listing.style.width = (i * buttonLongWidth()) + getScrollbarWidth() + 'px'
+            // Adjust without scrollbar if no scroll needed
             break
           }
 				  else continue
