@@ -338,10 +338,12 @@ customElements.define('question-decks',
 			})
 
       // App Height Settings
-      const appHeightStore = localStorage.getItem('appHeight').parseInt()
-      document.querySelector('.body').style.height = appHeightStore + 70 + 'vh'
-      listing.style.height = appHeightStore + 70 + 'vh'
-      globalData.limit.appHeight = appHeightStore
+      const appHeightStore = !!localStorage.getItem('appHeight') ? localStorage.getItem('appHeight').parseInt() : ''
+      if (appHeightStore !== '') {
+        document.querySelector('.body').style.height = appHeightStore + 70 + 'vh'
+        listing.style.height = appHeightStore + 70 + 'vh'
+        globalData.limit.appHeight = appHeightStore
+      }
       appHeight.map(a => {
         a[1].addEventListener('input', () => {
           document.querySelector('.body').style.height = a[1].value.parseInt() + 70 + 'vh'
