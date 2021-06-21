@@ -2,32 +2,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: hidden; /* To Fix Double Scroll iOS */
-}
-
-.body {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 85vh;
-  overflow-y: hidden;
-  background-color: Khaki;
+  overflow-y: hidden; /* To Fix Double Scroll iOS PLEASE TEST TO CONFIRM!!!*/
 }
 
 audio {
   display: none;
 }
 
-picture-button {
-  margin: 1rem;
-}
-/*
-body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-html {
-  height: -webkit-fill-available;
-}
-*/
 

@@ -65,6 +65,7 @@ questionDecks.template.css = ({
   button = {
     background: { color: '#DDD' },
     boxModel: {
+      content: { minWidth: 'max-content', minHeight: 'max-content' },
       padding: { all: '1rem' },
       border: {
         t: { width: '0.5rem', style: 'solid', color: '#CCC' },
@@ -90,6 +91,8 @@ questionDecks.template.css = ({
       overflow-y: auto;
       height: 85vh;
 			${ flex({ wrap: 'wrap', align: 'center', justify: 'center' })}
+      background: khaki;
+      display: none;
 		}
     .settings-button {
 			position: absolute;
@@ -132,6 +135,7 @@ questionDecks.template.css = ({
 		[type=range] {width: 60px;}
     .button {
       ${background(button.background)}
+      ${boxModel.content(button.boxModel.content)}
       ${boxModel.border(button.boxModel.border)}
       ${boxModel.padding(button.boxModel.padding)}
     }
@@ -257,24 +261,34 @@ customElements.define('question-decks',
 				  .map(a => /* 1 */ getComputedWidth(a).ceil())
 				  .reduce((a,b) => a > b ? a : b)
 
-      window.addEventListener('load', () => {
+      const readjustSize = () => {
         // Adjusts min & max based on Adjusted button widths
 			  listing.style.minWidth = buttonLongWidth() + 'px'
-			  listing.style.maxWidth = (sqrtTotalButtons * buttonLongWidth()) + getScrollbarWidth() + 'px'
 
 			  // Changes All Answer Widths To Matching Widths
 			  buttons.map(a => a.style.width = buttonLongWidth() + 'px')
-        buttons.map(a => a.style.height = buttonLongWidth() + 'px')
 
 			  // Adjust Card Width Based On Longest Answer Width
 			  for (let i = sqrtTotalButtons; i > 0; i--) {
-				  if (currentContainerWidth() < i * buttonLongWidth()) continue
-				  else {
-					  listing.style.width = i * (buttonLongWidth() + (getScrollbarWidth() / sqrtTotalButtons)) + 'px'
-					  break
-				  }
+				  if (window.innerWidth >= i * buttonLongWidth()) {
+            // Some how this comes to be off by 1 pixel running it once
+					  listing.style.width = (i * buttonLongWidth()) + getScrollbarWidth() + 'px'
+					  listing.style.width = (i * buttonLongWidth()) + getScrollbarWidth() + 'px'
+            break
+          }
+				  else continue
 			  }
+      }
+
+      window.addEventListener('load', () => {
+        listing.style.display = 'flex'
+        readjustSize()
+        // Button size would vary without load event
       })
+      window.addEventListener('resize', () => {
+        readjustSize()
+      })
+      
 
 
       // Click outside Settings (1)
@@ -342,13 +356,11 @@ customElements.define('question-decks',
       // App Height Settings
       const appHeightStore = !!localStorage.getItem('appHeight') ? localStorage.getItem('appHeight').parseInt() : ''
       if (appHeightStore !== '') {
-        document.querySelector('.body').style.height = appHeightStore + 70 + 'vh'
         listing.style.height = appHeightStore + 70 + 'vh'
         globalData.limit.appHeight = appHeightStore
       }
       appHeight.map(a => {
         a[1].addEventListener('input', () => {
-          document.querySelector('.body').style.height = a[1].value.parseInt() + 70 + 'vh'
           listing.style.height = a[1].value.parseInt() + 70 + 'vh'
           globalData.limit.appHeight = a[1].value.parseInt()
         })

@@ -26,6 +26,7 @@ const globalData = {
 	},
 	score: {
 		right: 0,
+    miss: 0,
 		wrong: 0,
     overview: [],
 	},

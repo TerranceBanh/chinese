@@ -21,11 +21,18 @@ score.template.html = ({}) => `
 			&frasl;
 			<sub class="denominator"></sub>
 		</div>
+		<div class="miss">
+			<sup class="numerator"></sup>
+			&frasl;
+			<sub class="denominator"></sub>
+		</div>
 		<div class="wrong">
 			<sup class="numerator"></sup>
 			&frasl;
 			<sub class="denominator"></sub>
 		</div>
+    <div class="overview"></div>
+    <div class="font-size"></div>
 	</div>
 `
 
@@ -45,14 +52,17 @@ score.template.css = ({
 }) => `
   <style>
   	${boilerplate}
-  	.right, .wrong { 
+  	.right, .miss, .wrong, .overview { 
   		${ flex({ align: 'center', justify: 'space-around' }) }
-  		${ boxModel.content({ width: '100vw', height: '50vh' })}
+  		${ boxModel.content({ width: '100vw', height: 'calc(100vh / 3)' })}
   		
   		font-size: 100px;
   	}
   	.wrong { color: red; }
+    .miss { color: yellow; }
   	.right { color: green; }
+    .overview {}
+    .font-size { font-size: 1ch; }
   </style>
 `
 
@@ -81,6 +91,14 @@ customElements.define('score-',
 
 			this.style.display = 'none'
 
+//      const overview = $(this)('.overview')
+//      const fontSize = $(this)('.font-size')
+//      console.log(fontSize.computedStyle('font-size').parseInt())
+//      console.log(overview.computedStyle('font-size').parseInt())
+//      console.log(overview.computedStyle('width').parseInt())
+//      console.log(overview.computedStyle('width').parseInt() % fontSize.computedStyle('font-size').parseFloat())
+//      console.log(overview.textContent.length)
+//
     }
   }
 )

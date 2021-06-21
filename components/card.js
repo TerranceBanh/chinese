@@ -197,6 +197,7 @@ customElements.define('card-',
 							},
 							unselect: {
 								right: 0,
+								miss: 0,
 								wrong: 0,
 							}
 						}
@@ -210,11 +211,16 @@ customElements.define('card-',
 
 						
 						for (let i = 0, len = currentAnswers.length; i < len; i++) {
+              const update = (answerType) => {
+									globalData.score[answerType]++
+									globalData.outputs[currentCount][answerType === 'miss' ? 'unselect' : 'select'][answerType]++
+//									currentAnswers[i].shadowRoot.querySelector(`.${answerType}`).style.display = 'block'
+                  globalMethods.newInputColor(globalData.elements.inputs[i], 'checkbox', globalData.color[`${answerType}1`])
+									globalMethods.newInputColor(globalData.elements.inputs[i], 'background', globalData.color[`${answerType}2`])
+              }
 							// Checks Global Data For Correct Answer
-
 							const correctAnswer = globalData.outputs[currentCount].relaventAnswers
 								.some(a => a === globalData.cards[currentCount].answers[i])
-
 
 							// Checks If Input Is Checked
 							const selected = currentAnswers[i].shadowRoot.querySelector('.input').checked
@@ -222,33 +228,14 @@ customElements.define('card-',
 							// Store Correct Answer Stats
 							if (correctAnswer) {
 								globalData.outputs[currentCount].answers.push('✅')
-								if (selected) {
-									globalData.score.right++
-									globalData.outputs[currentCount].select.right++
-									currentAnswers[i].shadowRoot.querySelector('.right').style.display = 'block'
-                  globalMethods.newInputColor(globalData.elements.inputs[i], 'checkbox', globalData.color.right1)
-									globalMethods.newInputColor(globalData.elements.inputs[i], 'background', globalData.color.right2)
-                  
-								}
-								else {
-									currentAnswers[i].shadowRoot.querySelector('.miss').style.display = 'block'
-                  globalMethods.newInputColor(globalData.elements.inputs[i], 'checkbox', globalData.color.miss1)
-									globalMethods.newInputColor(globalData.elements.inputs[i], 'background', globalData.color.miss2)
-                  
-								}
+								if (selected) update('right')
+								else update('miss')
 								if (!selected) globalData.outputs[currentCount].unselect.right++
 							}
 							// Store Incorrect Answer Stats
 							else {
 								globalData.outputs[currentCount].answers.push('❌')								
-								if (selected) {
-									globalData.score.wrong++
-									globalData.outputs[currentCount].select.wrong++
-									currentAnswers[i].shadowRoot.querySelector('.wrong').style.display= 'block'
-                  globalMethods.newInputColor(globalData.elements.inputs[i], 'checkbox', globalData.color.wrong1)
-									globalMethods.newInputColor(globalData.elements.inputs[i], 'background', globalData.color.wrong2)
-                  
-								}
+								if (selected) update('wrong')
 								if (!selected) globalData.outputs[currentCount].unselect.wrong++
 							}
 						}
@@ -267,7 +254,7 @@ customElements.define('card-',
               rightSound.play()
               globalMethods.newSubmitColor(globalData.color.right2)
             }
-            else if (selectedCorrect - selectedWrong > totalCorrect / 2) {
+            else if (selectedCorrect - selectedWrong >= totalCorrect / 2) {
               globalData.score.overview.push('🟨')
               wrongSound.play()
               globalMethods.newSubmitColor(globalData.color.miss2)
@@ -290,6 +277,11 @@ customElements.define('card-',
 									  numerator: score.querySelector('.right .numerator'),
 									  denominator: score.querySelector('.right .denominator'),
 								  }
+
+                  const miss = {
+									  numerator: score.querySelector('.miss .numerator'),
+									  denominator: score.querySelector('.miss .denominator'),
+								  }
 	  
 								  const wrong = {
 									  numerator: score.querySelector('.wrong .numerator'),
@@ -297,8 +289,11 @@ customElements.define('card-',
 								  }
 								  right.numerator.textContent = globalData.score.right
 								  right.denominator.textContent = globalData.total.right
+								  miss.numerator.textContent = globalData.score.miss
+								  miss.denominator.textContent = globalData.total.right
 								  wrong.numerator.textContent = globalData.score.wrong
 								  wrong.denominator.textContent = globalData.total.wrong
+//                  score.querySelector('.overview').textContent = globalData.score.overview.join('')
 								  
 								  this.style.display = 'none'
 								  document.querySelector('score-').style.display = 'block'
