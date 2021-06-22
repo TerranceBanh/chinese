@@ -20,27 +20,27 @@ questionDecks.template.html = ({}) => `
 		<div class="settings-menu-container">
       <div class="settings-menu">
         <h1 class="settings-title">Settings</h1>
-			  <div class="question-count">
+			  <div class="setting question-count">
 				  <label>Question Count</label>
 				  <input type="number" min="1" max="1000" value="5" class="question-number">
 				  <input type="range" min="1" max="1000" value="5" class="question-slider">
 			  </div>
-			  <div class="answer-count">
+			  <div class="setting answer-count">
 				  <label>Answer Count</label>
 				  <input type="number" min="1" max="30" value="9" class="answer-number">
 				  <input type="range" min="1" max="30" value="9" class="answer-slider">
 			  </div>
-			  <div class="correctAnswer-count">
+			  <div class="setting correctAnswer-count">
 				  <label>Correct Answer Count</label>
 				  <input type="number" min="1" max="3" value="3" class="correct-answer-number">
 				  <input type="range" min="1" max="3" value="3" class="correct-answer-slider">
 			  </div>
-        <div class="next-question-delay">
+        <div class="setting next-question-delay">
 				  <label>Next Question Delay</label>
 				  <input type="number" min="0" max="2000" value="600" class="next-question-delay-number">
 				  <input type="range" min="0" max="2000" value="600" class="next-question-delay-slider">
 			  </div>
-        <div class="app-height">
+        <div class="setting app-height">
 				  <label>App Height (To Fix Mobile View)</label>
 				  <input type="number" min="0" max="30" value="15" class="app-height-number">
 				  <input type="range" min="0" max="30" value="15" class="app-height-slider">
@@ -317,7 +317,7 @@ customElements.define('question-decks',
       $(this)('.settings-menu')
         .children
         .values()
-        .filter(a => a.classList[0] !== 'settings-title')
+        .filter(a => a.classList[0] === 'setting')
         .map(a => 
           a
             .classList[0]
