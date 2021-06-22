@@ -320,11 +320,12 @@ customElements.define('question-decks',
         .filter(a => a.classList[0] === 'setting')
         .map(a => 
           a
-            .classList[0]
+            .classList[1]
             .split('-')
             .map((a,b) => b === 0 ? a : a.letterUp(0))
             .join('')
         )
+      console.log(settingNames)
 			;[question, answer, correctAnswer, nextQuestionDelay, appHeight].forEach(({ number, slider}, b) => {
 				slider.addEventListener('input', () => number.value = slider.value)
 				number.addEventListener('keypress', e => !!e.key.match(/[0-9]/) ? null : e.preventDefault())
