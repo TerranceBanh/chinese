@@ -21,27 +21,27 @@ questionDecks.template.html = ({}) => `
       <div class="settings-menu">
         <h1 class="settings-title">Settings</h1>
 			  <div class="setting question-count">
-				  <label>Question Count</label>
+				  <label>Questions</label>
 				  <input type="number" min="1" max="1000" value="5" class="question-number">
 				  <input type="range" min="1" max="1000" value="5" class="question-slider">
 			  </div>
 			  <div class="setting answer-count">
-				  <label>Answer Count</label>
+				  <label>Answers</label>
 				  <input type="number" min="1" max="30" value="9" class="answer-number">
 				  <input type="range" min="1" max="30" value="9" class="answer-slider">
 			  </div>
 			  <div class="setting correctAnswer-count">
-				  <label>Correct Answer Count</label>
+				  <label>Right Answers</label>
 				  <input type="number" min="1" max="3" value="3" class="correct-answer-number">
 				  <input type="range" min="1" max="3" value="3" class="correct-answer-slider">
 			  </div>
         <div class="setting next-question-delay">
-				  <label>Next Question Delay</label>
+				  <label>Feedback Time</label>
 				  <input type="number" min="0" max="2000" value="600" class="next-question-delay-number">
 				  <input type="range" min="0" max="2000" value="600" class="next-question-delay-slider">
 			  </div>
         <div class="setting app-height">
-				  <label>App Height (To Fix Mobile View)</label>
+				  <label>App Height</label>
 				  <input type="number" min="0" max="30" value="15" class="app-height-number">
 				  <input type="range" min="0" max="30" value="15" class="app-height-slider">
 			  </div>
@@ -52,7 +52,10 @@ questionDecks.template.html = ({}) => `
 
     <button class="stats-button">Stats</button>
     <div class="stats-list-container">
-      <table class="stats-list"></table>
+      <table class="stats-list">
+        <caption class="stats-title">Statistics</caption>
+
+      </table>
     </div>
 	</div>
 `
@@ -140,13 +143,14 @@ questionDecks.template.css = ({
       ${boxModel.padding(settingsButton.boxModel.padding)}
       ${boxModel.content(settingsButton.boxModel.content)}
     }
-    .settings-menu-container, .stats-list-container{
+    .settings-menu-container, .stats-list-container {
       visibility: hidden;
       ${all.position1('absolute')}
       ${boxModel.content({ width: '100vw', height: '100vh' })}
       ${background(settingsMenuContainer.background)}
+      z-index: 1;
     }
-    .settings-title {
+    .settings-title, .stats-title {
       background: white;
       display: table-caption;
       text-align: center;
@@ -162,16 +166,22 @@ questionDecks.template.css = ({
       ${boxModel.padding(settingsMenu.boxModel.padding)}
       ${all.position1('relative')}
     }
-    .setting > label, .setting > input, a > img {
+    .setting > label, .setting > input, a > img, .stats-list td {
       display: table-cell;
       height: 100%;
-      font-size: 2rem;
+      font-size: 1.5rem;
       margin-top: 1rem;
       margin-bottom: 1rem;
       vertical-align: middle;
     }
     .setting, a {
       display: table-row;
+    }
+    [type="number"] {
+      margin-right: 1rem;
+    }
+    label, .stats-list td  {
+      padding-right: 1rem;
     }
 		[type=number] { width: 60px;}
 		[type=range] {width: 100px;}
@@ -442,26 +452,41 @@ customElements.define('question-decks',
           )// Set End
         )// Array End
 
-      categoryStats // Generate Category Stats
-        .map(a => { 
-          const category = document.createElement('td')
-          const number = document.createElement('td')
-          const row = document.createElement('tr')
-          const text = document.createTextNode(a[0])
-          const n = document.createTextNode(a[1])
+      {
+        const number = categoryStats // Generate Category Stats
+          .map(a => { 
+            const category = document.createElement('td')
+            const number = document.createElement('td')
+            const row = document.createElement('tr')
+            const text = document.createTextNode(a[0])
+            const n = document.createTextNode(a[1])
+            appendElements({
+              e : row, c: [
+	              {e : category, c: [{e: text}]},
+	              {e : number,c: [{e: n}]},
+              ]
+            })
+            stats.appendChild(row)
+            return a
+          })
+          .values()
+          .map((a) => a[1])
+          .reduce((a,b) => a + b)
+
           appendElements({
-            e : row, c: [
-	            {e : category, c: [{e: text}]},
-	            {e : number,c: [{e: n}]},
+            e : stats, c: [
+              {e : document.createElement('tr'), c: [
+                {e: document.createElement('td'), c: [document.createTextNode('Total Possible Questions')] },
+                {e: document.createElement('td'), c: [document.createTextNode(number)] }
+              ]},
             ]
           })
-          stats.appendChild(row)
-        })
+      }
 
-      {
+      {// Generate Total Characters Stat
         const total = document.createElement('td')
         const number = document.createElement('td')
-        const text = document.createTextNode('Total')
+        const text = document.createTextNode('Total Characters')
         const n = document.createTextNode(charStat.length)
         appendElements({
           e : stats, c: [
