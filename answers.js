@@ -646,7 +646,7 @@ const answers = {
 			{ch: '来回。', pinyin: 'Lái huí.', en: 'Return trip./Round trip.', audio: '来回。.(🎵)', },
 			{ch: '几位？', pinyin: 'Jǐ wèi?', en: 'How many spaces? (How many people?)', audio: '几位？.(🎵)', },
 			{ch: '一位。', pinyin: 'Yī wèi.', en: 'One space. (One person.)', audio: '一位。.(🎵)', },
-			{ch: '两位。', pinyin: 'Liǎng wèi.', en: 'Two space. (One person.)', audio: '两位。.(🎵)', },
+			{ch: '两位。', pinyin: 'Liǎng wèi.', en: 'Two space. (Two person.)', audio: '两位。.(🎵)', },
 			{ch: '我想看一下菜单。', pinyin: 'Wǒ xiǎng kàn yīxià càidān.', en: 'I would like to look at the menu.', audio: '我想看一下菜单。.(🎵)', },
 			{ch: '点菜。', pinyin: 'Diǎn cài.', en: 'Ready to order.', audio: '点菜。.(🎵)', },
 			{ch: '我要。。。', pinyin: 'Wǒ yào...', en: 'I will have...', audio: '我要。。。.(🎵)', },
@@ -735,23 +735,21 @@ const answers = {
 //    ],
 }
 
-const arr = []
-//console.log(
+// Sound Test
+//answers
+//  .map(a => 
+//    a[1].map((a,b) => {
+//      const button = $(`<button>${a.audio}</button>`)
+//      button.addEventListener('click', () => {
+//        new Audio(`./chinese/${a.audio.replace('.(🎵)', '.mp3')}`).play()
+//      })
+//      $('body').appendChild(button)
+//    })
+//  )
+//  .values()
+//  .join('')
+//  .replace(/,/g, '')
 
-answers
-  .map(a => 
-    a[1].map((a,b) => {
-      const button = $(`<button>${a.audio}</button>`)
-      button.addEventListener('click', () => {
-        new Audio(`./chinese/${a.audio.replace('.(🎵)', '.mp3')}`).play()
-      })
-      $('body').appendChild(button)
-    })
-  )
-  .values()
-  .join('')
-  .replace(/,/g, '')
-//)
 // () = More Appropriate Translation of the given direct translation
 // [] = Scenario in or context of which the word is used 
 // {} = Other
