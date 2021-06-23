@@ -214,7 +214,7 @@ customElements.define('card-',
               const update = (answerType) => {
 									globalData.score[answerType]++
 									globalData.outputs[currentCount][answerType === 'miss' ? 'unselect' : 'select'][answerType]++
-//									currentAnswers[i].shadowRoot.querySelector(`.${answerType}`).style.display = 'block'
+									currentAnswers[i].shadowRoot.querySelector(`.${answerType}`).style.display = 'block'
                   globalMethods.newInputColor(globalData.elements.inputs[i], 'checkbox', globalData.color[`${answerType}1`])
 									globalMethods.newInputColor(globalData.elements.inputs[i], 'background', globalData.color[`${answerType}2`])
               }
