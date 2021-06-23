@@ -49,6 +49,11 @@ questionDecks.template.html = ({}) => `
         <a href="https://liberapay.com/TerranceBanh/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
       </div>
 		</div>
+
+    <button class="stats-button">Stats</button>
+    <div class="stats-list-container">
+      <table class="stats-list"></table>
+    </div>
 	</div>
 `
 
@@ -64,29 +69,63 @@ questionDecks.template.html = ({}) => `
 
 
 questionDecks.template.css = ({
+  all = {
+    position1: (p) => `
+      position: ${p};
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    `,
+    position2: `
+			position: absolute;
+			top: 0;
+			left: 0;
+    `,
+    btnBW: '0.5rem',
+    btnC1: '#CCC',
+    btnC2: '#999',
+  },
+  listing = {
+
+  },
   button = {
     background: { color: '#DDD' },
     boxModel: {
       content: { minWidth: 'max-content', minHeight: 'max-content' },
       padding: { all: '1rem' },
       border: {
-        t: { width: '0.5rem', style: 'solid', color: '#CCC' },
-        b: { width: '0.5rem', style: 'solid', color: '#999' },
-        l: { width: '0.5rem', style: 'solid', color: '#CCC' },
-        r: { width: '0.5rem', style: 'solid', color: '#999' },
+        t: { width: all.btnBW, style: 'solid', color: all.btnC1 },
+        b: { width: all.btnBW, style: 'solid', color: all.btnC2 },
+        l: { width: all.btnBW, style: 'solid', color: all.btnC1 },
+        r: { width: all.btnBW, style: 'solid', color: all.btnC2 },
       },
     },
     active: {
       boxModel: {
         border: {
-          t: { width: '0.5rem', style: 'solid', color: '#999' },
-          b: { width: '0.5rem', style: 'solid', color: '#CCC' },
-          l: { width: '0.5rem', style: 'solid', color: '#999' },
-          r: { width: '0.5rem', style: 'solid', color: '#CCC' },
+          t: { width: all.btnBW, style: 'solid', color: all.btnC2 },
+          b: { width: all.btnBW, style: 'solid', color: all.btnC1 },
+          l: { width: all.btnBW, style: 'solid', color: all.btnC2 },
+          r: { width: all.btnBW, style: 'solid', color: all.btnC1 },
         },
       },
     }
-  }	
+  },
+  settingsMenu = {
+    background: { color: 'white' },
+    boxModel: {
+      padding: { all: '2rem' },
+    },
+  },
+  settingsMenuContainer = {
+    background: { color: '#0009' }
+  },
+  settingsButton = {
+    boxModel: {
+      content: { width: '8rem', height: '8rem' },
+      padding: { all: '0' }
+    }
+  }
 }) => `
   <style>
 		.listing {
@@ -95,56 +134,63 @@ questionDecks.template.css = ({
 			${ flex({ wrap: 'wrap', align: 'center', justify: 'center' })}
       background: khaki;
       display: none;
-      align-items: center;
-      justify-content: center;
 		}
     .settings-button {
-			position: absolute;
-			top: 0;
-			left: 0;
-      padding: 0;
-      width: 8rem;
-      height: 8rem;
+      ${all.position2}
+      ${boxModel.padding(settingsButton.boxModel.padding)}
+      ${boxModel.content(settingsButton.boxModel.content)}
     }
-    .settings-menu-container {
-			position: absolute;
-      background: #0009;
+    .settings-menu-container, .stats-list-container{
       visibility: hidden;
-      width: 100vw;
-      height: 100vh;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      ${all.position1('absolute')}
+      ${boxModel.content({ width: '100vw', height: '100vh' })}
+      ${background(settingsMenuContainer.background)}
     }
     .settings-title {
-      width: min-content;
-			position: relative;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      background: white;
+      display: table-caption;
+      text-align: center;
+      color: black;
+      margin: 0;
+      padding-top: 2rem;
+      font-size: 4rem;
     }
-    .settings-menu {
-			position: relative;
-      background-color: white;
-      width: max-content;
-      padding: 2rem;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .settings-menu, .stats-list {
+      display: table;
+      ${background(settingsMenu.background)}
+      ${boxModel.content({ width: 'max-content' })}
+      ${boxModel.padding(settingsMenu.boxModel.padding)}
+      ${all.position1('relative')}
     }
-		.question-count, .answer-count, .correctAnswer-count, .app-height {
-			${ flex({ align: 'center' }) }
-		}
+    .setting > label, .setting > input, a > img {
+      display: table-cell;
+      height: 100%;
+      font-size: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      vertical-align: middle;
+    }
+    .setting, a {
+      display: table-row;
+    }
 		[type=number] { width: 60px;}
-		[type=range] {width: 60px;}
+		[type=range] {width: 100px;}
     .button {
       ${background(button.background)}
       ${boxModel.content(button.boxModel.content)}
       ${boxModel.border(button.boxModel.border)}
       ${boxModel.padding(button.boxModel.padding)}
+      margin: 0;
     }
     .button:active {
       ${boxModel.border(button.active.boxModel.border)}
+    }
+    .stats-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      ${boxModel.padding(settingsButton.boxModel.padding)}
+      ${boxModel.content(settingsButton.boxModel.content)}
     }
     .img {}
     .label {}
@@ -176,6 +222,9 @@ customElements.define('question-decks',
       const listing = $(this)('.listing')
       const settings = $(this)('.settings-menu-container')
       const settingsButton = $(this)('.settings-button')
+      const statsContainer = $(this)('.stats-list-container')
+      const stats = $(this)('.stats-list')
+      const statsButton = $(this)('.stats-button')
 
 //      const { question, answer, correctAnswer, appHeight, nextQuestionDelay } = 
 //
@@ -296,22 +345,25 @@ customElements.define('question-decks',
       
 
 
-      // Click outside Settings (1)
+      // Click outside Settings/Stats (1)
       let outsideClicked = false
-      settings.addEventListener("mousedown", function (e) {
-        if (this == e.target) outsideClicked = true
-      })
+      ;[settings, statsContainer].map(a => 
+        a.addEventListener("mousedown", function (e) {
+          if (this == e.target) outsideClicked = true
+        })
+      )
+      // Click outside Settings/Stats (2)
+      ;[settings, statsContainer].map(a => 
+        a.addEventListener("mouseup", function (e) {
+          if (outsideClicked && this == e.target) this.style.visibility = 'hidden'
+          outsideClicked = false
+        })
+      )
 
-      // Click outside Settings (2)
-      settings.addEventListener("mouseup", function (e) {
-        if (outsideClicked && this == e.target) this.style.visibility = 'hidden'
-        outsideClicked = false
-      })
+      // Makes settings appear when settings/Stats button is clicked
+      settingsButton.addEventListener("click", () => settings.style.visibility = 'visible')
+      statsButton.addEventListener("click", () => statsContainer.style.visibility = 'visible')
 
-      // Makes settings appear when settings button is clicked
-      settingsButton.addEventListener("click", () => {
-        settings.style.visibility = 'visible'
-      })
 
       const settingNames = 
       $(this)('.settings-menu')
@@ -325,7 +377,6 @@ customElements.define('question-decks',
             .map((a,b) => b === 0 ? a : a.letterUp(0))
             .join('')
         )
-      console.log(settingNames)
 			;[question, answer, correctAnswer, nextQuestionDelay, appHeight].forEach(({ number, slider}, b) => {
 				slider.addEventListener('input', () => number.value = slider.value)
 				number.addEventListener('keypress', e => !!e.key.match(/[0-9]/) ? null : e.preventDefault())
@@ -372,6 +423,53 @@ customElements.define('question-decks',
         })
       })
 
+      const categoryStats = answers
+        .map(a => 
+          a[1]
+            .map(a => a.values().length)
+            .reduce((a,b) => a + b)
+        )
+      const charStat = Array.from(
+          new Set(
+            answers
+              .values()
+              .flat()
+              .map(a => a.ch)
+              .reduce((a,b) => a + b)
+              .split('')
+              .filter(a => !['，', '？', '。', '/'].some(b => a === b)),
+
+          )// Set End
+        )// Array End
+
+      categoryStats // Generate Category Stats
+        .map(a => { 
+          const category = document.createElement('td')
+          const number = document.createElement('td')
+          const row = document.createElement('tr')
+          const text = document.createTextNode(a[0])
+          const n = document.createTextNode(a[1])
+          appendElements({
+            e : row, c: [
+	            {e : category, c: [{e: text}]},
+	            {e : number,c: [{e: n}]},
+            ]
+          })
+          stats.appendChild(row)
+        })
+
+      {
+        const total = document.createElement('td')
+        const number = document.createElement('td')
+        const text = document.createTextNode('Total')
+        const n = document.createTextNode(charStat.length)
+        appendElements({
+          e : stats, c: [
+            {e : total, c: [{e: text}]},
+            {e : number, c: [{e: n}]},
+          ]
+        })
+      }
       
 
     }
