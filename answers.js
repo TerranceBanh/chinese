@@ -617,7 +617,7 @@ const answers = {
 			{ch: '我是外国人。', pinyin: 'Wǒ shì wài guó rén.', en: 'I am a foreigner.', audio: '我是外国人。.(🎵)', },
 			{ch: '不好意思。', pinyin: 'Bù hǎo yì si.', en: 'Excuse me/Sorry.', audio: '不好意思。.(🎵)', },
 			{ch: '对不起。', pinyin: 'Duì bu qǐ.', en: 'Sorry [To get attention, for getting past, for mild apologies].', audio: '对不起。.(🎵)', },
-			{ch: '请问。。。？', pinyin: 'Qǐng wèn...? ', en: 'Could I Ask...', audio: '请问。。。.(🎵)', },
+			{ch: '请问。。。？', pinyin: 'Qǐng wèn...? ', en: 'Could I Ask...', audio: '请问。。。？.(🎵)', },
 			{ch: '麻烦你了。', pinyin: 'Mǎ fan nǐ le.', en: 'Sorry to bother you.', audio: '麻烦你了。.(🎵)', },
 			{ch: '好的！', pinyin: 'Hǎo de!', en: 'Ok!', audio: '好的！.(🎵)', },
 			{ch: '没问题。', pinyin: 'Méi wèn tí.', en: 'No problem', audio: '没问题。.(🎵)', },
@@ -735,6 +735,23 @@ const answers = {
 //    ],
 }
 
+const arr = []
+//console.log(
+
+answers
+  .map(a => 
+    a[1].map((a,b) => {
+      const button = $(`<button>${a.audio}</button>`)
+      button.addEventListener('click', () => {
+        new Audio(`./chinese/${a.audio.replace('.(🎵)', '.mp3')}`).play()
+      })
+      $('body').appendChild(button)
+    })
+  )
+  .values()
+  .join('')
+  .replace(/,/g, '')
+//)
 // () = More Appropriate Translation of the given direct translation
 // [] = Scenario in or context of which the word is used 
 // {} = Other
