@@ -627,7 +627,7 @@ const answers = {
 			{ch: '你会说。。。', pinyin: 'Nǐ huì shuō...?', en: 'Do you speak...?', audio: '你会说。。。.(🎵)', },
 			{ch: '我会说。', pinyin: 'Wǒ huì shuō.', en: 'I can speak it. (Yes, I can speak it.)', audio: '我会说。.(🎵)', },
 			{ch: '可以说得慢一点吗？', pinyin: 'Kě yǐ shuō de màn yī diǎn ma?', en: 'Could you speak more slowly?', audio: '可以说得慢一点吗？.(🎵)', },
-			{ch: '什么意思？', pinyin: 'shén me yì si?', en: 'What does... mean?', audio: '什么意思？.(🎵)', },
+			{ch: '。。。什么意思？', pinyin: '...shén me yì si?', en: 'What does... mean?', audio: '。。。什么意思？.(🎵)', },
 			{ch: '。。。怎么说？', pinyin: '...zěn me shuō?', en: 'How do you say...?', audio: '。。。怎么说？.(🎵)', },
 			{ch: '我不知道。', pinyin: 'Wǒ bù zhī dao.', en: 'I do not know.', audio: '我不知道。.(🎵)', },
 			{ch: '不好意思，可以问个路玛？', pinyin: 'Bù hǎo yì si, kě yǐ wèn ge lù ma?', en: 'Excuse me, could I ask for some directions?', audio: '不好意思，可以问个路玛？.(🎵)', },
