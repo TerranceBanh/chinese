@@ -3,7 +3,6 @@ body {
   justify-content: center;
   align-items: center;
   overflow-y: auto; /* To Fix Double Scroll iOS PLEASE TEST TO CONFIRM!!!*/
-  overscroll-behavior: contain;
 }
 
 audio {

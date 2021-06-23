@@ -137,7 +137,6 @@ questionDecks.template.css = ({
 			${ flex({ wrap: 'wrap', align: 'center', justify: 'center' })}
       background: khaki;
       display: none;
-      overscroll-behavior: contain;
 		}
     .settings-button {
       ${all.position2}
