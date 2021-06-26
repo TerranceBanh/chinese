@@ -45,8 +45,27 @@ questionDecks.template.html = ({}) => `
 				  <input type="number" min="0" max="30" value="15" class="app-height-number">
 				  <input type="range" min="0" max="30" value="15" class="app-height-slider">
 			  </div>
-        
-        <a href="https://liberapay.com/TerranceBanh/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+        <tr>
+          <a class="lp" href="https://liberapay.com/TerranceBanh/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+          <a href="https://www.youtube.com/channel/UCYJFMSYRjnR8-lXvsKAfsDw" class="yt" colspan="1"><svg viewBox="0 267.07 1800 1260.02" width="42.667142857142856" height="30" xmlns="http://www.w3.org/2000/svg">
+    <path d="M711 1128l484-250-484-253v503zm185-862c377 0 627 18 627 18 35 4 112 4 180 76 0 0 55 54 71 178 19 145 18 290 18 290v136s1 145-18 290c-16 123-71 178-71 178-68 71-145 71-180 75 0 0-250 19-627 19-466-4-609-18-609-18-40-7-130-5-198-76 0 0-55-55-71-178C-1 1109 0 964 0 964V828s-1-145 18-290c16-124 71-178 71-178 68-72 145-72 180-76 0 0 250-18 627-18z"/>
+</svg></a>
+          <a href="https://space.bilibili.com/1264996871" class="bili-bili">
+            <div class="container">
+              <div class="box">
+                <div class="antennas1"></div>
+                <div class="antennas2"></div>
+                <div class="eye1"></div>
+                <div class="eye2"></div>
+                <div class="mouth1"></div>
+                <div class="mouth2"></div>
+                <div class="feet1"></div>
+                <div class="feet2"></div>
+              </div>
+            </div>
+            <div class="text">b<span>i</span><span>l</span><span>i</span> b<span>i</span><span>l</span><span>i</span></div>
+          </a>
+        </tr>
       </div>
 		</div>
 
@@ -166,7 +185,7 @@ questionDecks.template.css = ({
       ${boxModel.padding(settingsMenu.boxModel.padding)}
       ${all.position1('relative')}
     }
-    .setting > label, .setting > input, a > img, .stats-list td {
+    .setting > label, .setting > input, .stats-list td {
       display: table-cell;
       height: 100%;
       font-size: 1.5rem;
@@ -174,7 +193,8 @@ questionDecks.template.css = ({
       margin-bottom: 1rem;
       vertical-align: middle;
     }
-    .setting, a {
+
+    .setting {
       display: table-row;
     }
     [type="number"] {
@@ -201,6 +221,117 @@ questionDecks.template.css = ({
       right: 0;
       ${boxModel.padding(settingsButton.boxModel.padding)}
       ${boxModel.content(settingsButton.boxModel.content)}
+    }
+    .yt {
+      fill: red;
+    }
+    .yt, .lp {
+      position: relative;
+    }
+    .yt > *, .lp > * {
+      transform: translateY(25%);
+    }
+
+    .bili-bili {
+      display: inline-flex;
+      transform:  translateY(25%);
+      text-decoration: none;
+    }
+    .bili-bili > .text {
+      display: inline-block;
+      color: #00a1d6;
+      font-weight: 1000;
+      transform: scale(1.2, 2) skew(10deg, 0deg) translate(10%, 15%);
+      font-size: 1.5rem;
+      height: 1.5rem;
+    }
+    .bili-bili span:nth-child(1),
+    .bili-bili span:nth-child(3),
+    .bili-bili span:nth-child(4), 
+    .bili-bili span:nth-child(6) {
+      display: inline-block;
+      transform: scale(1, 0.70)  translateY(4%);
+    }
+    .bili-bili span:nth-child(2), .text > span:nth-child(5) {
+      display: inline-block;
+      transform: scale(1, 0.80) translateY(-4%);
+    }
+    .bili-bili .box {
+      position: relative;
+      width: 2.5rem;
+      height: 2rem;
+      border: #00a1d6 solid 0.4rem;
+      border-radius: 0.5rem;
+    }
+    .bili-bili .eye1, .bili-bili .eye2 {
+      position: absolute;
+      top: 35%;
+      background: #00a1d6;
+      width: 0.75rem;
+      height: 0.3rem;
+      transform-origin: center;
+    }
+    .bili-bili .eye1 {
+      left: 10%;
+      transform: rotate(-15deg)
+    }
+    .bili-bili .eye2 {
+      right: 10%;
+      transform: rotate(15deg)
+    }
+    .bili-bili .antennas1, .bili-bili .antennas2 {
+      position: absolute;
+      top: -26%;
+      background: #00a1d6;
+      width: 1rem;
+      height: 0.25rem;
+      border-radius: 10rem;
+    }
+    .bili-bili .antennas1 {
+      right: 10%;
+      transform-orign: left center;
+      transform: rotate(-45deg);
+    }
+    .bili-bili .antennas2 {
+      left: 10%;
+      transform-orign: right center;
+      transform: rotate(45deg);
+    }
+    .bili-bili .feet1, .bili-bili .feet2{
+      position: absolute;
+      background: #00a1d6;
+      bottom: -0.6rem;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 10rem;
+    }
+    .bili-bili .feet1 {
+      left: 12.5%;
+    }
+    .bili-bili .feet2 {
+      right: 12.5%;
+    }
+    .bili-bili .mouth1 {
+      position: absolute;
+      top: 65%;
+      left: calc(50% - 0.1rem);
+      width: 0.2rem;
+      height: 0.2rem;
+      border: #00a1d6 solid 0.2rem;
+      border-top: white solid 0;
+      border-top-left-radius: 0rem;
+      transform-origin: top left;
+    }
+    .bili-bili .mouth2 {
+      position: absolute;
+      top: 65%;
+      right: calc(50% - 0.1rem);
+      width: 0.2rem;
+      height: 0.2rem;
+      border: #00a1d6 solid 0.2rem;
+      border-top: white solid 0;
+      border-top-right-radius: 0rem;
+      transform-origin: top right;
     }
     .img {}
     .label {}

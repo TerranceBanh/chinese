@@ -132,12 +132,23 @@ customElements.define('card-',
 				container.style.maxWidth = sqrtTotalAnswers * answerLongWidth() + (answersContainer.offsetWidth - answersContainer.clientWidth) + 'px'
 			}
 
+      // ADD A MAX WIDTH OF VIEWPORT!!!
+
 			const grid = () => {
 				// Variables
 				const answers = Object.values(answersContainer.children)				
-				const longestWidth = answers
+				let longestWidth = answers
 					.map(a => getComputedWidth(a.shadowRoot.querySelector('.container')))
 					.reduce((a,b) => a > b ? a : b)
+
+//				let longestHeight = answers
+//					.map(a => getComputedWidth(a.shadowRoot.querySelector('.container')))
+//					.reduce((a,b) => a > b ? a : b)
+
+        // ADUST HEIGHT OF ANSWER BOXES
+        // RESET BOX SIZES WHEN RESIZING WINDOW
+
+        longestWidth = longestWidth > window.innerWidth ? window.innerWidth : longestWidth
 
 				// Changes All Answer Widths To Matching Widths
 				answers.map(a => a.shadowRoot.querySelector('.container').style.width = longestWidth + 'px')
