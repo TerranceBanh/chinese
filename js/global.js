@@ -9,6 +9,7 @@ const globalData = {
 	current: 0,
 	answersData: [], // Server will send question and answers set to here on deck of choice
   decksData: answers.keys(), // Server will send decks to here on page load
+  chosenDeck: '',
 	cards: [],
   elements: {
     inputs: [],

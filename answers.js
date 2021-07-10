@@ -32,7 +32,7 @@ const answers = {
         { ch: '你的', pinyin: 'nǐ de', en: 'yours', audio: '你的.(🎵)', }, 
         { ch: '您的', pinyin: 'nín de', en: 'yours (polite)', audio: '您的.(🎵)', }, 
         { ch: '他的', pinyin: 'tā de (male)', en: 'his', audio: '他的，她的.(🎵)', }, 
-        { ch: '她的', pinyin: 'tā de (female)', en: 'her/hers', audio: '他的，她的.(🎵)', }, 
+        { ch: '她的', pinyin: 'tā de (female)', en: 'her/hers', audio: '他的，她的.(🎵)', }, /* 2 */
         { ch: '我们的', pinyin: 'wǒ men de', en: 'ours', audio: '我们的.(🎵)', }, 
         { ch: '你们的', pinyin: 'nǐ men de', en: 'yours (plural) ', audio: '你们的.(🎵)', }, 
         { ch: '您们的', pinyin: 'nín men de', en: 'yours (polite plural)', audio: '您们的.(🎵)', }, 
@@ -611,7 +611,7 @@ const answers = {
 			{ch: '你贵姓？', pinyin: 'Ní guì xìng? ', en: 'What is your surname?', audio: '你贵姓？.(🎵)', },
 			{ch: '我姓。。。', pinyin: 'Wǒ xìng... ', en: 'My surname is...', audio: '我姓。。。.(🎵)', },
 			{ch: '你多大？', pinyin: 'Nǐ duō dà?', en: 'How old are you?', audio: '你多大？.(🎵)', },
-			{ch: '你来自哪里？', pinyin: 'Nǐ lái zì nǎli?', en: 'Where do you come from?', audio: '你来自哪里？.(🎵)', },
+			{ch: '你来自哪里？', pinyin: 'Nǐ lái zì nǎ li?', en: 'Where do you come from?', audio: '你来自哪里？.(🎵)', },
 			{ch: '我来自。。。', pinyin: 'Wǒ lái zì...', en: 'I come from...', audio: '我来自。。。.(🎵)', },
 			{ch: '你是哪国人？', pinyin: 'Nǐ shì nǎ guó rén?', en: 'Which country are you from?', audio: '你是哪国人？.(🎵)', },
 			{ch: '我是外国人。', pinyin: 'Wǒ shì wài guó rén.', en: 'I am a foreigner.', audio: '我是外国人。.(🎵)', },
@@ -620,11 +620,11 @@ const answers = {
 			{ch: '请问。。。？', pinyin: 'Qǐng wèn...? ', en: 'Could I Ask...', audio: '请问。。。？.(🎵)', },
 			{ch: '麻烦你了。', pinyin: 'Mǎ fan nǐ le.', en: 'Sorry to bother you.', audio: '麻烦你了。.(🎵)', },
 			{ch: '好的！', pinyin: 'Hǎo de!', en: 'Ok!', audio: '好的！.(🎵)', },
-			{ch: '没问题。', pinyin: 'Méi wèn tí.', en: 'No problem', audio: '没问题。.(🎵)', },
+			{ch: '没问题。', pinyin: 'Méi wèn tí.', en: 'No problem.', audio: '没问题。.(🎵)', },
 			{ch: '你听得懂吗？', pinyin: 'Nǐ tīng de dǒng ma? ', en: 'Do you understand?', audio: '你听得懂吗？.(🎵)', },
 			{ch: '我听得懂。', pinyin: ' Wǒ tīng de dǒng.', en: 'I understand.', audio: '我听得懂。.(🎵)', },
 			{ch: '我听不懂。', pinyin: 'Wǒ tīng bu dǒng.', en: 'I do not understand.', audio: '我听不懂。.(🎵)', },
-			{ch: '你会说。。。', pinyin: 'Nǐ huì shuō...?', en: 'Do you speak...?', audio: '你会说。。。.(🎵)', },
+			{ch: '你会说。。。？', pinyin: 'Nǐ huì shuō...?', en: 'Do you speak...?', audio: '你会说。。。？.(🎵)', },
 			{ch: '我会说。', pinyin: 'Wǒ huì shuō.', en: 'I can speak it. (Yes, I can speak it.)', audio: '我会说。.(🎵)', },
 			{ch: '可以说得慢一点吗？', pinyin: 'Kě yǐ shuō de màn yī diǎn ma?', en: 'Could you speak more slowly?', audio: '可以说得慢一点吗？.(🎵)', },
 			{ch: '。。。什么意思？', pinyin: '...shén me yì si?', en: 'What does... mean?', audio: '。。。什么意思？.(🎵)', },
@@ -633,7 +633,7 @@ const answers = {
 			{ch: '不好意思，可以问个路玛？', pinyin: 'Bù hǎo yì si, kě yǐ wèn ge lù ma?', en: 'Excuse me, could I ask for some directions?', audio: '不好意思，可以问个路玛？.(🎵)', },
 			{ch: '到。。。怎么走？', pinyin: 'Dào... zěn me zǒu?', en: 'How do you get to the...?', audio: '到。。。怎么走？.(🎵)', },
 			{ch: '。。。在哪儿？/。。。在哪里？', pinyin: '...zài nǎ r?/...zài nǎ li? ', en: 'Where is the...?', audio: '。。。在哪儿？ 。。。在哪里？.(🎵)', },
-			{ch: '。。。在那儿/。。。在那里', pinyin: '...zài nà r./...zài nà lǐ', en: 'The... is over there.', audio: '。。。在那儿 。。。在那里.(🎵)', },
+			{ch: '。。。在那儿/。。。在那里', pinyin: '...zài nà r./...zài nà lǐ.', en: 'The... is over there.', audio: '。。。在那儿 。。。在那里.(🎵)', },
 			{ch: '在这儿。/在这里。', pinyin: 'Zài zhè r./Zài zhè lǐ.', en: 'It is here.', audio: '在这儿。在这里。.(🎵)', },
 			{ch: '直走。', pinyin: 'Zhí zǒu.', en: 'Go straight ahead.', audio: '直走。.(🎵)', },
 			{ch: '右转。', pinyin: 'Yòu zhuǎn.', en: 'Turn Right.', audio: '右转。.(🎵)', },
@@ -644,7 +644,7 @@ const answers = {
 			{ch: '两张票。', pinyin: 'Liǎng zhāng piào.', en: 'Two tickets.', audio: '两张票。.(🎵)', },
 			{ch: '单程。', pinyin: 'Dān chéng.', en: 'One way.', audio: '单程。.(🎵)', },
 			{ch: '来回。', pinyin: 'Lái huí.', en: 'Return trip./Round trip.', audio: '来回。.(🎵)', },
-			{ch: '几位？', pinyin: 'Jǐ wèi?', en: 'How many spaces? (How many people?)', audio: '几位？.(🎵)', },
+			{ch: '几位？', pinyin: 'Jǐ wèi?', en: 'How many spots? (How many people?)', audio: '几位？.(🎵)', },
 			{ch: '一位。', pinyin: 'Yī wèi.', en: 'One spot. (One person.)', audio: '一位。.(🎵)', },
 			{ch: '两位。', pinyin: 'Liǎng wèi.', en: 'Two spots. (Two people.)', audio: '两位。.(🎵)', },
 			{ch: '我想看一下菜单。', pinyin: 'Wǒ xiǎng kàn yīxià càidān.', en: 'I would like to look at the menu.', audio: '我想看一下菜单。.(🎵)', },
@@ -956,3 +956,4 @@ const answers = {
 // May require images to bridge the indirect translations of vegetables
 // INDICATE MALE AND FEMALE AND FORMAL AND POLITE
 // /* 1 */ Thanks to Selene from Hellotalk app for helping out with some of the translations
+// /* 2 */ Error occured here. Correct answers became incorrect answers

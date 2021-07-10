@@ -438,7 +438,10 @@ customElements.define('question-decks',
         const img = $('$<img></img>', { classList: 'img', src: 'https://via.placeholder.com/100/FFA/000', draggable: false })
         const p = $(`<p>${a}</p>`, { classList: 'label' })
 
-        button.addEventListener('click', () => generate(answers[a]))
+        button.addEventListener('click', () => {
+          $('score-').shadowRoot.querySelector('.title').innerText = p.textContent
+          generate(answers[a])
+        })
 
         button.appendChild(img)
         button.appendChild(p)

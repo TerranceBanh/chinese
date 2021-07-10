@@ -16,6 +16,7 @@ score.template = {}
 
 score.template.html = ({}) => `
 	<div class="container">
+    <h1 class="title"></h1>
 		<div class="right">
 			<sup class="numerator"></sup>
 			&frasl;
@@ -31,8 +32,6 @@ score.template.html = ({}) => `
 			&frasl;
 			<sub class="denominator"></sub>
 		</div>
-    <div class="overview"></div>
-    <div class="font-size"></div>
 	</div>
 `
 
@@ -52,12 +51,17 @@ score.template.css = ({
 }) => `
   <style>
   	${boilerplate}
-  	.right, .miss, .wrong, .overview { 
+  	.right, .miss, .wrong, .overview, .title { 
   		${ flex({ align: 'center', justify: 'space-around' }) }
-  		${ boxModel.content({ width: '100vw', height: 'calc(100vh / 3)' })}
-  		
-  		font-size: 100px;
+  		${ boxModel.content({ width: '100vw', height: 'calc(100vh / 4)' })}
   	}
+    .right, .miss, .wrong, .overview {
+      font-size: 100px;
+    }
+    .title {
+      font-size: 50px;
+      background: ${globalData.color.bg};
+    }
   	.wrong { color: red; }
     .miss { color: yellow; }
   	.right { color: green; }
