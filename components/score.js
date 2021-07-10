@@ -61,6 +61,7 @@ score.template.css = ({
     .title {
       font-size: 50px;
       background: ${globalData.color.bg};
+      text-align: center;
     }
   	.wrong { color: red; }
     .miss { color: yellow; }
