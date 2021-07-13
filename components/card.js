@@ -189,74 +189,61 @@ customElements.define('card-',
 
 
 					{// STORE USER INPUTS START
-						globalData.inputs[currentCount] = { questions: currentQuestion, answers: [] }
+						globalData.cards[currentCount].answersChosen = []
 						currentAnswers
 							.map(a =>
-								globalData.inputs[currentCount].answers.push(a.shadowRoot.querySelector('.input').checked)
+								globalData.cards[currentCount].answersChosen.push(a.shadowRoot.querySelector('.input').checked)
 							)	
 					}// STORE USER INPUTS END
 
 
 					{// STORE ANSWER STATS START
-						globalData.outputs[currentCount] = { 
-							question:  globalData.cards[globalData.current].question, 
-							answers: [], 
-							selected: globalData.inputs[currentCount].answers.filter(a => a === true).length,
-							select: {
-								right: 0,
-								wrong: 0,
-							},
-							unselect: {
-								right: 0,
-								miss: 0,
-								wrong: 0,
-							}
-						}
+            globalData.cards[currentCount].answersLegend = []
+            globalData.cards[currentCount].select = { right: 0, wrong: 0 }
+            globalData.cards[currentCount].unselect =  { right: 0, wrong: 0 }
 
-						// Search For Correct Answers
-						for (let i = 0, len = globalData.answersData.length; i < len; i++) 
-							if (Object.values(globalData.answersData[i]).includes(currentQuestion)) {
-								globalData.outputs[currentCount].relaventAnswers = Object.values(globalData.answersData[i])
-								break
-							}
 
-						
 						for (let i = 0, len = currentAnswers.length; i < len; i++) {
               const update = (answerType) => {
-									globalData.score[answerType]++
-									globalData.outputs[currentCount][answerType === 'miss' ? 'unselect' : 'select'][answerType]++
-									currentAnswers[i].shadowRoot.querySelector(`.${answerType}`).style.display = 'block'
-                  globalMethods.newInputColor(globalData.elements.inputs[i], 'checkbox', globalData.color[`${answerType}1`])
-									globalMethods.newInputColor(globalData.elements.inputs[i], 'background', globalData.color[`${answerType}2`])
+								globalData.score[answerType]++
+								if (answerType !== 'miss') globalData.cards[currentCount]['select'][answerType]++
+								currentAnswers[i].shadowRoot.querySelector(`.${answerType}`).style.display = 'block'
+                globalMethods.newInputColor(globalData.elements.inputs[i], 'checkbox', globalData.color[`${answerType}1`])
+								globalMethods.newInputColor(globalData.elements.inputs[i], 'background', globalData.color[`${answerType}2`])
+                if (answerType === 'right') globalData.cards[currentCount].select.right++
+                if (answerType === 'wrong') globalData.cards[currentCount].select.wrong++
               }
 							// Checks Global Data For Correct Answer
-							const correctAnswer = globalData.outputs[currentCount].relaventAnswers
-								.some(a => a === globalData.cards[currentCount].answers[i])
+							const correctAnswer = globalData.cards[currentCount].rights
+								.some(a => 
+                  a === globalData.cards[currentCount].answers[i]
+                )
 
 							// Checks If Input Is Checked
 							const selected = currentAnswers[i].shadowRoot.querySelector('.input').checked
 
 							// Store Correct Answer Stats
 							if (correctAnswer) {
-								globalData.outputs[currentCount].answers.push('✅')
+								globalData.cards[currentCount].answersLegend.push('✅')
 								if (selected) update('right')
 								else update('miss')
-								if (!selected) globalData.outputs[currentCount].unselect.right++
+								if (!selected) globalData.cards[currentCount].unselect.right++
 							}
 							// Store Incorrect Answer Stats
 							else {
-								globalData.outputs[currentCount].answers.push('❌')								
+								globalData.cards[currentCount].answersLegend.push('❌')								
 								if (selected) update('wrong')
-								if (!selected) globalData.outputs[currentCount].unselect.wrong++
+								if (!selected) globalData.cards[currentCount].unselect.wrong++
 							}
 						}
 						
+
 					}// STORE ANSWER STATS END
 
 
           {// Score Overview
-            const selectedCorrect = globalData.outputs[globalData.outputs.length - 1].select.right
-            const selectedWrong = globalData.outputs[globalData.outputs.length - 1].select.wrong
+            const selectedCorrect = globalData.cards[globalData.current].select.right
+            const selectedWrong = globalData.cards[globalData.current].select.wrong
             const totalCorrect = parseInt(globalData.limit.correctAnswers)
             const rightSound = new Audio('correct.wav')
             const wrongSound = new Audio(`incorrect.wav`)
@@ -304,6 +291,7 @@ customElements.define('card-',
 								  miss.denominator.textContent = globalData.total.right
 								  wrong.numerator.textContent = globalData.score.wrong
 								  wrong.denominator.textContent = globalData.total.wrong
+                  score.querySelector('.title').innerText = globalData.chosenDeck + ` (${globalData.limit.questions})`
 //                  score.querySelector('.overview').textContent = globalData.score.overview.join('')
 								  
 								  this.style.display = 'none'

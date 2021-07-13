@@ -6,7 +6,7 @@ const cardGen = ({
   question, // Array [PROPERTY, VALUE]
   limit // Number
 }) => {
-
+  
   question = question.entries(0)
   let wrongs = answers
     .objectMatch(rights) // Removes right answers from rest of answers
@@ -21,7 +21,7 @@ const cardGen = ({
     .values() // Converts key/value pairs to values
 
   wrongs = wrongs
-    .filter(a => !rights.includes(a)) // Removes any answers that are the exact same as the rights
+    .filter(a => !rights.some(b => a === b)) // Removes any answers that are the exact same as the rights
 
   limit = {
     answers: limit, // Store answers limit
@@ -73,6 +73,7 @@ const cardGen = ({
       break
     }
   }
+
   
   answers = wrongs.concat(rights).shuffle() // Mix right & wrong answers
   globalData.cards.push({ question: question[1], answers, rights, wrongs }) // Add card to globalData

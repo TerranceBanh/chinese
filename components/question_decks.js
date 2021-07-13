@@ -439,7 +439,7 @@ customElements.define('question-decks',
         const p = $(`<p>${a}</p>`, { classList: 'label' })
 
         button.addEventListener('click', () => {
-          $('score-').shadowRoot.querySelector('.title').innerText = p.textContent
+          globalData.chosenDeck = p.textContent
           generate(answers[a])
         })
 

@@ -148,22 +148,14 @@ customElements.define('button-crud',
 
 
       {// Generate Question Count
-        const { limit, outputs } = globalData
-        const { questions } = limit
-//        const sub = ['₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉']
-//        const sup = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹']
         const convert = (n, type) => n.toString().split('').map(a => type[parseInt(a)]).join('')
-//        const generateFraction = () => 
-//          questionCounter.innerText = convert(outputs.length + 1, sup) + '⁄' + convert(questions, sub)
         const generateFraction = () => {
-          sub.innerText = questions
-          sup.innerText = outputs.length + 1
+          sub.innerText = globalData.limit.questions
+          sup.innerText = globalData.current + 1
         }
         generateFraction()        
         btn.addEventListener('click', () => 
-          outputs.length + 2 <= parseInt(questions) ?
-          setTimeout(() => generateFraction(), globalData.limit.delay) :
-          null
+          setTimeout(() => generateFraction(), globalData.limit.delay)
         )
       }// Generate Question Count
 

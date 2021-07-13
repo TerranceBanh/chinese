@@ -32,6 +32,10 @@ score.template.html = ({}) => `
 			&frasl;
 			<sub class="denominator"></sub>
 		</div>
+    <!--
+    <div class="overview"></div>
+    <div class="font-size"></div>
+    -->
 	</div>
 `
 

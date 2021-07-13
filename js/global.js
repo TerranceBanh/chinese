@@ -19,8 +19,6 @@ const globalData = {
     incorrect: incorrectSound,
     card: '',
   },
-	inputs: [],
-	outputs: [],
 	total: {
 		right: 0,
 		wrong: 0,
