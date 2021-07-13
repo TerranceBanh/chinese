@@ -210,8 +210,6 @@ customElements.define('card-',
 								currentAnswers[i].shadowRoot.querySelector(`.${answerType}`).style.display = 'block'
                 globalMethods.newInputColor(globalData.elements.inputs[i], 'checkbox', globalData.color[`${answerType}1`])
 								globalMethods.newInputColor(globalData.elements.inputs[i], 'background', globalData.color[`${answerType}2`])
-                if (answerType === 'right') globalData.cards[currentCount].select.right++
-                if (answerType === 'wrong') globalData.cards[currentCount].select.wrong++
               }
 							// Checks Global Data For Correct Answer
 							const correctAnswer = globalData.cards[currentCount].rights
