@@ -16,14 +16,18 @@
     <script src="./js/getScrollbarWidth.js" defer></script>
     <script src="./js/array/array.shuffle.js" defer></script>
     <script src="./js/array/array.objectMatch.js" defer></script>
+    <script src="./js/object/object.defineProperty.js" defer></script>
+    <script src="./js/object/object.assign.js" defer></script>
     <script src="./js/object/object.keys.js" defer></script>
     <script src="./js/object/object.values.js" defer></script>
     <script src="./js/object/object.entries.js" defer></script>
     <script src="./js/object/object.filter.js" defer></script>
     <script src="./js/object/object.map.js" defer></script>
     <script src="./js/htmlelement.computedStyle.js" defer></script>
-    <script src="./answers.js" defer></script>		
-    <script src="./js/global.js" defer></script>		
+    <script src="./js/global.js" defer></script>
+    <script src="./answers/chinese.js" defer></script>
+    <script src="./answers/japanese.js" defer></script>
+    <script src="./answers/英文.js" defer></script>
     <script src="./js/css_generator.js" defer></script>
     <script src="./js/html_prototypes.js" defer></script>
     <script src="./js/card_gen.js" defer></script>
@@ -34,16 +38,19 @@
     <script src="./components/question.js" defer></script>
     <script src="./components/card.js" defer></script>
     <script src="./components/score.js" defer></script>
+    <script src="./components/bili_bili.js" defer></script>
+    <script src="./components/question_packs.js" defer></script>
     <script src="./components/question_decks.js" defer></script>
+    <script src="./components/settings.js" defer></script>
+    <script src="./components/stats.js" defer></script>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="index.css">
 	</head>
 	<body>
+    <settings-></settings->
     <audio id="correctSound"><source src="./correct.wav"></audio>
     <audio id="incorrectSound"><source src="./incorrect.wav"></audio>
-    
-  		<question-decks></question-decks>
-    
+    <question-packs></question-packs>
 		<score-></score->
 	</body>
 </html>

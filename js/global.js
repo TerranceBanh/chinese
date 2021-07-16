@@ -1,4 +1,5 @@
 const globalData = {
+  locale: {},
 	limit: {
 		questions: 0,
 		answers: 0,
@@ -8,8 +9,10 @@ const globalData = {
 	},
 	current: 0,
 	answersData: [], // Server will send question and answers set to here on deck of choice
-  decksData: answers.keys(), // Server will send decks to here on page load
+  decksData: [], // Server will send decks to here on page load
   chosenDeck: '',
+  packsData: ['Chinese', 'Japanese', '英文'],
+  chosenPack: '',
 	cards: [],
   elements: {
     inputs: [],
@@ -18,6 +21,9 @@ const globalData = {
     correct: correctSound,
     incorrect: incorrectSound,
     card: '',
+    decks: '',
+    settings: '',
+    stats: '',
   },
 	total: {
 		right: 0,

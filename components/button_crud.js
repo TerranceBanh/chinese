@@ -129,6 +129,7 @@ customElements.define('button-crud',
         .appendChild(buttonCrud.content.cloneNode(true));
 
       // Selected Elements
+      const parent = this
       const btn = $(this)('.button')
       const label = $(this)('.label')
       const action = $(this)('.action')
@@ -148,15 +149,15 @@ customElements.define('button-crud',
 
 
       {// Generate Question Count
-        const convert = (n, type) => n.toString().split('').map(a => type[parseInt(a)]).join('')
         const generateFraction = () => {
           sub.innerText = globalData.limit.questions
           sup.innerText = globalData.current + 1
         }
         generateFraction()        
-        btn.addEventListener('click', () => 
+        parent.addEventListener('click', () => {
+          if (parent.disabled) return
           setTimeout(() => generateFraction(), globalData.limit.delay)
-        )
+        })
       }// Generate Question Count
 
       globalData.elements.submit = this

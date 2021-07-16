@@ -1,7 +1,7 @@
 'use strict'
 // Initial Template Code
-const audio = document.createElement('template')
-audio.template = {}
+const librapay = document.createElement('template')
+librapay.template = {}
 
 
 // 888    888 88888888888 888b     d888 888      
@@ -14,8 +14,11 @@ audio.template = {}
 // 888    888     888     888       888 88888888                            
 
 
-audio.template.html = ({}) => `
-   <button type="button" class="button">🎵</button>
+librapay.template.html = ({}) => `
+  <a class="lp" href="https://liberapay.com/TerranceBanh/donate">
+    <img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg">
+  </a>
+
 `
 
 
@@ -29,13 +32,11 @@ audio.template.html = ({}) => `
 //  "Y8888P"   "Y8888P"   "Y8888P"  
 
 
-audio.template.css = ({
+librapay.template.css = ({
 
 }) => `
   <style>
-		.button {
-			font: inherit;
-		}
+
   </style>
 `
 
@@ -51,21 +52,19 @@ audio.template.css = ({
 // 8888888888 88888888 8888888888 888       888 8888888888 888    Y888     888     
 
 
-audio.innerHTML = audio.template.css({}) + audio.template.html({})
-customElements.define('audio-',
+librapay.innerHTML = librapay.template.css({}) + librapay.template.html({})
+customElements.define('librapay-',
   class extends HTMLElement {
     constructor() {
       super()
       
       this
         .attachShadow({mode: 'open'})
-        .appendChild(audio.content.cloneNode(true))
+        .appendChild(librapay.content.cloneNode(true))
 
-      const button = $(this)('.button')
-      const src = this.innerHTML
-      const sound = new Audio(`./${src.replace('.(🎵)', '.mp3')}`)
-			
-      button.addEventListener('click', () => sound.play())
+
+
+
 
     }
     
@@ -85,6 +84,6 @@ customElements.define('audio-',
 
 
 /*  HTML TEMPLATE
-	<audio->AUDIO FILE HERE</audio>
+	<librapay-></librapay->
 */ 
 

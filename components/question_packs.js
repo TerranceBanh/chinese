@@ -1,7 +1,7 @@
 'use strict'
 // Initial Template Code
-const questionDecks = document.createElement('template')
-questionDecks.template = {}
+const questionPacks = document.createElement('template')
+questionPacks.template = {}
 
 
 // 888    888 88888888888 888b     d888 888      
@@ -14,7 +14,7 @@ questionDecks.template = {}
 // 888    888     888     888       888 88888888                            
 
 
-questionDecks.template.html = ({}) => `
+questionPacks.template.html = ({}) => `
 	<div class="listing"></div>
 `
 
@@ -29,7 +29,7 @@ questionDecks.template.html = ({}) => `
 //  "Y8888P"   "Y8888P"   "Y8888P"  
 
 
-questionDecks.template.css = ({
+questionPacks.template.css = ({
   all = {
     position1: (p) => `
       position: ${p};
@@ -76,6 +76,7 @@ questionDecks.template.css = ({
       height: 85vh;
 			${ flex({ wrap: 'wrap', align: 'center', justify: 'center' })}
       background: khaki;
+      display: none;
 		}
     .button {
       ${background(button.background)}
@@ -104,50 +105,47 @@ questionDecks.template.css = ({
 // 8888888888 88888888 8888888888 888       888 8888888888 888    Y888     888     
 
 
-questionDecks.innerHTML = questionDecks.template.css({}) + questionDecks.template.html({})
-customElements.define('question-decks',
+questionPacks.innerHTML = questionPacks.template.css({}) + questionPacks.template.html({})
+customElements.define('question-packs',
   class extends HTMLElement {
     constructor() {
       super()
       
       this
         .attachShadow({mode: 'open'})
-        .appendChild(questionDecks.content.cloneNode(true))
+        .appendChild(questionPacks.content.cloneNode(true))
 
+ 
       const listing = $(this)('.listing')
-      globalData.elements.decks = listing
+      globalData.elements.packs = listing
 
-      let wait = true
+
 
 			// MAKE INTO COMPONENT
 			const generate = (data) => {
-        globalData.elements.settings.style.display = 'none'
-        globalData.elements.stats.style.display = 'none'
-				deckGen(data)
 				this.style.display = 'none'
-				const card = $('<card-></card->')
-				card.setAttribute('mode', 'grid')
-				document.body.prepend(card)
-				globalData.answersData = data
+        globalData.decksData = data
+				const questionDecks = $('<question-decks></question-decks>')
+				document.body.appendChild(questionDecks)
+				const stats = $('<stats-></stats->')
+				document.body.appendChild(stats)
 			}
-      globalData.decksData.keys().forEach(function (a,b,c) {
+
+      globalData.packsData.forEach(a => {
         const button = $('<button></button>', { classList: 'button' })
         const img = $('$<img></img>', { classList: 'img', src: 'https://via.placeholder.com/100/FFA/000', draggable: false })
         const p = $(`<p>${a}</p>`, { classList: 'label' })
 
         button.addEventListener('click', () => {
-          globalData.chosenDeck = p.textContent
-          generate(window[globalData.chosenPack][a])
+          globalData.chosenPack = p.textContent
+          generate(window[a])
         })
 
         button.appendChild(img)
         button.appendChild(p)
         listing.appendChild(button)
-
-        if (c.length - 1 === b) {
-          wait = false
-        }
       })
+
 
 
       const buttons = listing.querySelectorAll('.button').toArray()
@@ -180,16 +178,12 @@ customElements.define('question-decks',
 			  }
       }
 
-
-      const interval = setInterval(() => {
+      window.addEventListener('load', () => {
         listing.style.display = 'flex'
         readjustSize()
         // Button size would vary without load event
-        if (!wait) clearInterval(interval)
       })
       window.addEventListener('resize', () => readjustSize())
-      
-      listing.style.height = globalData.elements.packs.style.height
 
     }
     
@@ -209,6 +203,6 @@ customElements.define('question-decks',
 
 
 /*  HTML TEMPLATE
-	<question-decks></question-decks>
+	<question-packs></question-packs>
 */ 
 

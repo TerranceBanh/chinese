@@ -101,7 +101,7 @@ customElements.define('card-',
 				`<checkbox-label>${a}</checkbox-label>`
 			).join('')
 
-      container.style.height = globalData.limit.appHeight + 70 + 'vh'
+      container.style.height = globalData.limit.appHeight.parseInt() + 70 + 'vh'
 
 			{// GENERATE QUESTIONS & ANSWERS START /* 2 */
 				generateQuestion()
@@ -264,7 +264,7 @@ customElements.define('card-',
 
 				
 					{// GENERATE NEW QUESTION & ANSWERS START
-						globalData.current++
+            globalData.current++
 						{// DISPLAY SCORE
 							if (currentCount === questionCount - 1) {
                 setTimeout(() => {
@@ -310,7 +310,7 @@ customElements.define('card-',
 								answerContainerResize()
                 grid()
 							}// REALIGN ELEMENTS END
-							submit.disabled = false
+							submit.disabled = false              
 						}, globalData.limit.delay)
 					}// GENERATE NEW QUESTION & ANSWERS	END
 
