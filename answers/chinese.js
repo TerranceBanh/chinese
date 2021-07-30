@@ -138,16 +138,16 @@ window['Chinese'] = {
       { cn: '孙女', pinyin: 'sūn nǚ', en: 'granddaughter', audio: '孙女.(🎵)', }, // Check for distinction between father's and mother's side
       { cn: '孙子', pinyin: 'sūn zi', en: 'grandson', audio: '孙子.(🎵)', }, // Check for distincition between father's and mother's side
 
-      { cn: '爷爷', pinyin: 'yé ye', en: 'grandpa (dad\'s Side)', audio: '爷爷.(🎵)', }, 
-      { cn: '奶奶', pinyin: 'nǎi nai', en: 'grandma (dad\'s Side)', audio: '奶奶.(🎵)', },
+      { cn: '爷爷', pinyin: 'yé ye', en: 'grandpa (dad\'s side)', audio: '爷爷.(🎵)', }, 
+      { cn: '奶奶', pinyin: 'nǎi nai', en: 'grandma (dad\'s side)', audio: '奶奶.(🎵)', },
       { cn: '公公', pinyin: 'gōng gōng', en: 'grandpa (north chinese)  (mom\'s Side)', audio: '公公.(🎵)', },
-      { cn: '姥姥', pinyin: 'lǎo lǎo', en: 'grandma (north chinese) (Mom\'s Side)', audio: '姥姥.(🎵)', },
+      { cn: '姥姥', pinyin: 'lǎo lǎo', en: 'grandma (north chinese) (mom\'s Side)', audio: '姥姥.(🎵)', },
       { cn: '外公', pinyin: 'wài gōng', en: 'grandpa (south Chinese) (mom\'s Side)', audio: '外公.(🎵)', },
       { cn: '外婆', pinyin: 'wài pó', en: 'grandma (south Chinese) (mom\'s Side)', audio: '外婆.(🎵)', }, 
-      { cn: '祖父', pinyin: 'zǔ fù', en: 'grandfather (dad\'s Side)', audio: '祖父.(🎵)', }, 
-      { cn: '祖母', pinyin: 'zǔ mǔ', en: 'grandmother (dad\'s Side)', audio: '祖母.(🎵)', },
-      { cn: '外祖父', pinyin: 'wài zǔ fù', en: 'grandfather (mom\'s Side)', audio: '外祖父.(🎵)', }, 
-      { cn: '外祖母', pinyin: 'wài zǔ mǔ', en: 'grandmother (mom\'s Side)', audio: '外祖母.(🎵)', },
+      { cn: '祖父', pinyin: 'zǔ fù', en: 'grandfather (dad\'s side)', audio: '祖父.(🎵)', }, 
+      { cn: '祖母', pinyin: 'zǔ mǔ', en: 'grandmother (dad\'s side)', audio: '祖母.(🎵)', },
+      { cn: '外祖父', pinyin: 'wài zǔ fù', en: 'grandfather (mom\'s side)', audio: '外祖父.(🎵)', }, 
+      { cn: '外祖母', pinyin: 'wài zǔ mǔ', en: 'grandmother (mom\'s side)', audio: '外祖母.(🎵)', },
       { cn: '岳父', pinyin: 'yuè fù', en: 'father-in-law', audio: '岳父.(🎵)', },
       { cn: '岳母', pinyin: 'yuè mǔ', en: 'mother-in-law', audio: '岳母.(🎵)', },
 
