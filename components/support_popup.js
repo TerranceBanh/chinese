@@ -156,7 +156,7 @@ customElements.define('support-popup',
           setTimeout(() => {
             if (b1 !== 0) window.open(href)
             background.style.visibility = 'hidden'
-          }, 200)
+          }, 500)
           storeSet('promo.value', 1)
           storeSet('promo.expiry', expDate(expireTime))
         })

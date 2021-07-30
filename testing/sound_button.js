@@ -65,7 +65,8 @@ customElements.define('audio-',
 			
       button.addEventListener('click', () => {
         const src = this.innerHTML
-        const sound = new Audio(`../${src.replace('.(🎵)', '.mp3')}`)
+        console.log(src)
+        const sound = new Audio(`../${src}`)
         sound.play()
       })
 
