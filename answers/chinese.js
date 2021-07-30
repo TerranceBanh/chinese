@@ -164,16 +164,17 @@ window['Chinese'] = {
       { cn: '舅母', pinyin: 'jiù mu', en: 'aunt (mom\'s brother\'s wife)', audio: '舅母.(🎵)', }, // (no old or young)
       { cn: '姑姑', pinyin: 'gū gu', en: 'aunt (dad\'s younger sister)', audio: '姑姑.(🎵)', },
       { cn: '姑妈', pinyin: 'gū mā', en: 'aunt (dad\'s older sister)', audio: '姑妈.(🎵)', },
-      { cn: '姨妈', pinyin: 'yí mā', en: 'aunt (mom\'s older siter)', audio: '姨妈.(🎵)', },
+      { cn: '姨妈', pinyin: 'yí mā', en: 'aunt (mom\'s older sister)', audio: '姨妈.(🎵)', },
 
-      { cn: '表哥', pinyin: 'biǎo gē', en: 'cousin (older male)', audio: '表哥.(🎵)', },
-      { cn: '表弟', pinyin: 'biǎo dì', en: 'cousin (younger male)', audio: '表弟.(🎵)', },
-      { cn: '表妹', pinyin: 'biǎo mèi', en: 'cousin (younger female)', audio: '表妹.(🎵)', },
-      { cn: '表姐', pinyin: 'biǎo jiě', en: 'cousin (older female)', audio: '表姐.(🎵)', },
-      { cn: '堂兄', pinyin: 'táng xiōng', en: 'cousin (older male)', audio: '堂兄.(🎵)', },
-      { cn: '堂弟', pinyin: 'táng dì', en: 'cousin (younger male)', audio: '堂弟.(🎵)', },
-      { cn: '堂姐', pinyin: 'táng jiě', en: 'cousin (older female)', audio: '堂姐.(🎵)', },
-      { cn: '堂妹', pinyin: 'táng mèi', en: 'cousin (younger female)', audio: '堂妹.(🎵)', },
+      // FIGURE OUT THE DIFFERENCES BETWEEN COUSINS
+      { cn: '表哥', pinyin: 'biǎo gē', en: 'cousin (older than you) (male) (different family name from you)', audio: '表哥.(🎵)', },
+      { cn: '表弟', pinyin: 'biǎo dì', en: 'cousin (younger than you) (male) (different family name from you)', audio: '表弟.(🎵)', },
+      { cn: '表妹', pinyin: 'biǎo mèi', en: 'cousin (younger than you) (female) (different family name from you)', audio: '表妹.(🎵)', },
+      { cn: '表姐', pinyin: 'biǎo jiě', en: 'cousin (older than you) (female) (different family name from you)', audio: '表姐.(🎵)', },
+      { cn: '堂兄', pinyin: 'táng xiōng', en: 'cousin (older than you) (male) (same family name as you)', audio: '堂兄.(🎵)', },
+      { cn: '堂弟', pinyin: 'táng dì', en: 'cousin (younger than you) (male) (same family name as you)', audio: '堂弟.(🎵)', },
+      { cn: '堂姐', pinyin: 'táng jiě', en: 'cousin (older than you) (female) (same family name as you)', audio: '堂姐.(🎵)', },
+      { cn: '堂妹', pinyin: 'táng mèi', en: 'cousin (younger than you) (female) (same family name as you)', audio: '堂妹.(🎵)', },
 
       { cn: '姐夫', pinyin: 'jiě fū', en: 'older sister\'s husband', audio: '姐夫.(🎵)', },
       { cn: '嫂子', pinyin: 'sǎo zi', en: 'older brother\'s wife', audio: '嫂子.(🎵)', },
