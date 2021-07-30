@@ -62,10 +62,11 @@ customElements.define('audio-',
         .appendChild(audio.content.cloneNode(true))
 
       const button = $(this)('.button')
-      const src = this.innerHTML
-      const sound = new Audio(`./${src.replace('.(🎵)', '.mp3')}`)
-			
-      button.addEventListener('click', () => sound.play())
+      button.addEventListener('click', () => {
+        const src = this.innerHTML
+        const sound = new Audio(`./${src.replace('.(🎵)', '.mp3')}`)
+        sound.play()
+      })
 
     }
     

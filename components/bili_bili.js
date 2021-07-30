@@ -15,7 +15,7 @@ bilibili.template = {}
 
 
 bilibili.template.html = ({}) => `
-  <a href="https://space.bilibili.com/1264996871" class="bili-bili">
+  <a href="https://space.bilibili.com/1264996871" target="_blank" class="bili-bili">
     <div class="container">
       <div class="box">
         <div class="antennas1"></div>
@@ -49,8 +49,8 @@ bilibili.template.css = ({
   <style>
     .bili-bili {
       display: inline-flex;
-      transform:  translateY(25%);
       text-decoration: none;
+      padding-right: 1.2rem;
     }
     .bili-bili > .text {
       display: inline-block;

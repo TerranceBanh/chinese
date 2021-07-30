@@ -15,7 +15,7 @@ librapay.template = {}
 
 
 librapay.template.html = ({}) => `
-  <a class="lp" href="https://liberapay.com/TerranceBanh/donate">
+  <a class="lp" target="_blank" href="https://liberapay.com/TerranceBanh/donate">
     <img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg">
   </a>
 

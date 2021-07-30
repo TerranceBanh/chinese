@@ -16,11 +16,14 @@ stats.template = {}
 
 stats.template.html = ({}) => `
   <button class="stats-button">Stats</button>
-  <div class="stats-list-container">
-    <table class="stats-list">
-      <caption class="stats-title">Statistics</caption>
-    </table>
-  </div>
+  <div class="stats-list-container1">
+    <div class="stats-list-container2">
+      <close2-></close2->
+      <table class="stats-list">
+        <caption class="stats-title">Statistics</caption>
+      </table>
+    </div>
+  </div>      
 `
 
 
@@ -58,7 +61,7 @@ stats.template.css = ({
   settingsMenu = {
     background: { color: 'white' },
     boxModel: {
-      padding: { all: '2rem' },
+      padding: { all: '3rem' },
     },
   },
 }) => `
@@ -70,12 +73,15 @@ stats.template.css = ({
       ${boxModel.padding(settingsButton.boxModel.padding)}
       ${boxModel.content(settingsButton.boxModel.content)}
     }
-    .stats-list-container {
+    .stats-list-container1 {
       visibility: hidden;
       ${all.position1('absolute')}
       ${boxModel.content({ width: '100vw', height: '100vh' })}
       ${background(settingsMenuContainer.background)}
       z-index: 1;
+    }
+    .stats-list-container2 {
+      ${all.position1('absolute')}
     }
     .stats-title {
       background: white;
@@ -83,7 +89,7 @@ stats.template.css = ({
       text-align: center;
       color: black;
       margin: 0;
-      padding-top: 2rem;
+      padding-top: 3rem;
       font-size: 4rem;
     }
     .stats-list {
@@ -91,14 +97,9 @@ stats.template.css = ({
       ${background(settingsMenu.background)}
       ${boxModel.content({ width: 'max-content' })}
       ${boxModel.padding(settingsMenu.boxModel.padding)}
-      ${all.position1('relative')}
     }
     .stats-list td {
-      display: table-cell;
-      height: 100%;
       font-size: 1.5rem;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
       vertical-align: middle;
     }
     label, .stats-list td  {
@@ -130,18 +131,24 @@ customElements.define('stats-',
         .appendChild(stats.content.cloneNode(true))
 
 
-      const statsContainer = $(this)('.stats-list-container')
+      const statsContainer = $(this)('.stats-list-container1')
       const statsList = $(this)('.stats-list')
       const statsButton = $(this)('.stats-button')
+      const close2 = $(this)('close2-')
 
       let outsideClicked = false
-        statsContainer.addEventListener("mouseup", function (e) {
-          if (outsideClicked && this == e.target) this.style.visibility = 'hidden'
-          outsideClicked = false
-        }) 
-        statsContainer.addEventListener("mousedown", function (e) {
-          if (this == e.target) outsideClicked = true
-        })
+
+      statsContainer.addEventListener("mouseup", function (e) {
+        if (outsideClicked && this == e.target) this.style.visibility = 'hidden'
+        outsideClicked = false
+      }) 
+      statsContainer.addEventListener("mousedown", function (e) {
+        if (this == e.target) outsideClicked = true
+      })
+
+      close2.addEventListener('click', () => {
+        statsContainer.style.visibility = 'hidden'
+      })
 
       statsButton.addEventListener("click", () => statsContainer.style.visibility = 'visible')
       const categoryStats = globalData.decksData

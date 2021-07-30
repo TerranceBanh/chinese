@@ -3,9 +3,10 @@
 const cardGen = ({
   answers, // Array of Objects 
   rights, // Object
-  question, // Array [PROPERTY, VALUE]
+  question, // Object
   limit // Number
 }) => {
+
   
   question = question.entries(0)
   let wrongs = answers

@@ -11,7 +11,7 @@ const globalData = {
 	answersData: [], // Server will send question and answers set to here on deck of choice
   decksData: [], // Server will send decks to here on page load
   chosenDeck: '',
-  packsData: ['Chinese', 'Japanese', '英文'],
+  packsData: ['Chinese', 'Japanese', '英语'],
   chosenPack: '',
 	cards: [],
   elements: {

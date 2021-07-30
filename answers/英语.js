@@ -1,7 +1,7 @@
 // Have indicators of literal meaning and intended meaning and indicators to differentiate similarities
-globalData.locale['英文'] = 'en'
 
-window['英文'] = {
+
+window['英语'] = {
     数字: [
         { cn: '零', en: 'zero', audio: 'zero.(🎵)', },  
         { cn: '一', en: 'one', audio: 'one.(🎵)', }, 
@@ -42,11 +42,11 @@ window['英文'] = {
 
 }
 
-window['英文'] = window['英文']
+window['英语'] = window['英语']
   .map(a => 
     a[1].map(a => 
       a.map(a => 
-        a[0] === 'audio' ? a[1] = 'audio/英文/' + a[1] : a[1]
+        a[0] === 'audio' ? a[1] = 'audio/英语/' + a[1] : a[1]
       )
     )
   )

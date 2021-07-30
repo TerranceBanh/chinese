@@ -119,8 +119,6 @@ customElements.define('question-packs',
       const listing = $(this)('.listing')
       globalData.elements.packs = listing
 
-
-
 			// MAKE INTO COMPONENT
 			const generate = (data) => {
 				this.style.display = 'none'

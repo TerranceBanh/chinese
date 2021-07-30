@@ -242,7 +242,7 @@ customElements.define('card-',
           {// Score Overview
             const selectedCorrect = globalData.cards[globalData.current].select.right
             const selectedWrong = globalData.cards[globalData.current].select.wrong
-            const totalCorrect = parseInt(globalData.limit.correctAnswers)
+            const totalCorrect = parseInt(globalData.cards[globalData.current].rights.length)
             const rightSound = new Audio('correct.wav')
             const wrongSound = new Audio(`incorrect.wav`)
             if (selectedCorrect - selectedWrong === totalCorrect) {

@@ -16,36 +16,47 @@ settings.template = {}
 
 settings.template.html = ({}) => `
   <button class="settings-button">Settings</button>
-  <div class="settings-menu-container">
-    <div class="settings-menu">
-      <h1 class="settings-title">Settings</h1>
-		  <div class="setting questions">
-			  <label>Questions</label>
-			  <input type="number" min="1" max="1000" value="5" class="question-number">
-			  <input type="range" min="1" max="1000" value="5" class="question-slider">
-		  </div>
-		  <div class="setting answers">
-			  <label>Answers</label>
-			  <input type="number" min="1" max="30" value="9" class="answer-number">
-			  <input type="range" min="1" max="30" value="9" class="answer-slider">
-		  </div>
-		  <div class="setting correctAnswers">
-			  <label>Right Answers</label>
-			  <input type="number" min="1" max="3" value="3" class="correct-answer-number">
-			  <input type="range" min="1" max="3" value="3" class="correct-answer-slider">
-		  </div>
-      <div class="setting next-question">
-			  <label>Feedback Time</label>
-			  <input type="number" min="0" max="2000" value="600" class="next-question-delay-number">
-			  <input type="range" min="0" max="2000" value="600" class="next-question-delay-slider">
-		  </div>
-      <div class="setting app-height">
-			  <label>App Height</label>
-			  <input type="number" min="0" max="30" value="15" class="app-height-number">
-			  <input type="range" min="0" max="30" value="15" class="app-height-slider">
-		  </div>
-      <tr class="social-media"></tr>
+  <div class="background">
+
+    <div class="settings-menu-container">
+      <close1-></close1->
+      <table class="settings-menu">
+        <caption class="settings-title">Settings</caption>
+		    <tr class="setting questions">
+			    <td class="label">Questions</td>
+			    <td><input type="number" min="1" max="1000" value="5" class="question-number"></td>
+			    <td><input type="range" min="1" max="1000" value="5" class="question-slider"></td>
+		    </tr>
+		    <tr class="setting answers">
+			    <td class="label">Answers</td>
+			    <td><input type="number" min="1" max="30" value="9" class="answer-number"></td>
+			    <td><input type="range" min="1" max="30" value="9" class="answer-slider"></td>
+		    </tr>
+		    <tr class="setting correctAnswers">
+			    <td class="label">Right Answers</td>
+			    <td><input type="number" min="1" max="5" value="5" class="correct-answer-number"></td>
+			    <td><input type="range" min="1" max="5" value="5" class="correct-answer-slider"></td>
+		    </tr>
+        <tr class="setting next-question">
+			    <td class="label">Feedback Time</td>
+			    <td><input type="number" min="0" max="2000" value="600" class="next-question-delay-number"></td>
+			    <td><input type="range" min="0" max="2000" value="600" class="next-question-delay-slider"></td>
+		    </tr>
+        <tr class="setting app-height">
+			    <td class="label">App Height</td>
+			    <td><input type="number" min="0" max="30" value="15" class="app-height-number"></td>
+			    <td><input type="range" min="0" max="30" value="15" class="app-height-slider"></td>
+		    </tr>
+      </table>
+
+
+      <div class="social-media">
+        <librapay-></librapay->
+        <youtube-></youtube->
+        <bili-bili></bili-bili>
+      </div>
     </div>
+
 	</div>
 `
 
@@ -100,30 +111,23 @@ settings.template.css = ({
       ${boxModel.content(settingsButton.boxModel.content)}
     }
     .settings-menu-container {
+      ${background(settingsMenu.background)}
+      ${boxModel.content({ width: 'max-content' })}
+      ${boxModel.padding(settingsMenu.boxModel.padding)}
+      ${all.position1('relative')}
+    }
+    .settings-title {
+      padding-bottom: 2rem;
+      font-size: 4rem;
+    }
+    .background {
       visibility: hidden;
       ${all.position1('absolute')}
       ${boxModel.content({ width: '100vw', height: '100vh' })}
       ${background(settingsMenuContainer.background)}
       z-index: 1;
     }
-    .settings-title {
-      background: white;
-      display: table-caption;
-      text-align: center;
-      color: black;
-      margin: 0;
-      padding-top: 2rem;
-      font-size: 4rem;
-    }
-    .settings-menu {
-      display: table;
-      ${background(settingsMenu.background)}
-      ${boxModel.content({ width: 'max-content' })}
-      ${boxModel.padding(settingsMenu.boxModel.padding)}
-      ${all.position1('relative')}
-    }
-    .setting > label, .setting > input {
-      display: table-cell;
+    td {
       height: 100%;
       font-size: 1.5rem;
       margin-top: 1rem;
@@ -131,17 +135,22 @@ settings.template.css = ({
       vertical-align: middle;
     }
 
-    .setting { display: table-row; }
+    .label { padding-right: 2rem; }
     [type="number"] { margin-right: 1rem; }
-    label { padding-right: 1rem; }
-		[type=number] { width: 60px; }
-		[type=range] { width: 100px; }
+		[type="number"] { width: 60px; }
+		[type="range"] { width: 100px; }
+    .social-media {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding-top: 2rem;
+    }
 
-    .yt { fill: red; }
-    .yt, .lp { position: relative; }
-    .yt > *, .lp > * { transform: translateY(25%); }
   </style>
 `
+
+
+
 
 
 
@@ -165,17 +174,22 @@ customElements.define('settings-',
         .attachShadow({mode: 'open'})
         .appendChild(settings.content.cloneNode(true))
 
+      const close1 = $(this)('close1-')
+
       const [ questionCount, answerCount, correctAnswer, nextQuestionDelay, appHeight ] = 
         $(this)('.settings-menu')
+          .children[1]
           .children
           .values()
-          .filter(a => a.classList[0] === 'setting')
-          .map(a => a.classList[1])
-          .map(a => ({ 
-            name: a.split('-').map((a,b) => b > 0 ? a.letterUp(0) : a).join(''),
-            slider: $(this)(`.${a} > [type="range"]`), 
-            number: $(this)(`.${a} > [type="number"]`),
-          }))
+          .map(a => a.children.values())
+          .map(a => 
+            a.map(
+              (a,b) => b === 0 ? 
+              a.parentNode.className.split(' ')[1].split('-').map((a,b) => b > 0 ? a.letterUp(0) : a).join('') : 
+              a.children[0] 
+            )
+              .toObject({ props: ['name', 'number', 'slider',]})
+          )
           .map(({name, number, slider}) => {
 				    slider.addEventListener('input', () => 
               number.value = slider.value, 
@@ -234,7 +248,7 @@ customElements.define('settings-',
       const appHeightStore = !!localStorage.getItem('appHeight') ? localStorage.getItem('appHeight').parseInt() : ''
       if (appHeightStore !== '') {
         globalData.elements.packs.style.height = appHeightStore + 70 + 'vh'
-//        if (!!globalData.elements.decks) globalData.elements.packs.style.height = appHeightStore + 70 + 'vh'
+        if (!!globalData.elements.decks) globalData.elements.packs.style.height = appHeightStore + 70 + 'vh'
       }
       appHeight.map(a => {
         a[1].addEventListener('input', () => {
@@ -244,19 +258,23 @@ customElements.define('settings-',
         })
       })
 
-      const settingsMenu = $(this)('.settings-menu-container')
+      const settingsMenu = $(this)('.background')
       const settingsButton = $(this)('.settings-button')
 
 
       let outsideClicked = false
-        settingsMenu.addEventListener("mouseup", function (e) {
-          if (outsideClicked && this == e.target) this.style.visibility = 'hidden'
-          outsideClicked = false
-        })
+      settingsMenu.addEventListener("mouseup", function (e) {
+        if (outsideClicked && this == e.target) this.style.visibility = 'hidden'
+        outsideClicked = false
+      })
 
-        settingsMenu.addEventListener("mousedown", function (e) {
-          if (this == e.target) outsideClicked = true
-        })
+      settingsMenu.addEventListener("mousedown", function (e) {
+        if (this == e.target) outsideClicked = true
+      })
+
+      close1.addEventListener('click', () => {
+        settingsMenu.style.visibility = 'hidden'
+      })
 
 
       settingsButton.addEventListener("click", () => settingsMenu.style.visibility = 'visible')

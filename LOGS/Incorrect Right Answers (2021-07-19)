@@ -1,0 +1,58 @@
+QUESTION 70/80
+{
+  "question": "audio/chinese/他，她.(🎵)",
+  "answers": [
+    "you (polite)",
+    "wǒ men",
+    "我们",
+    "tā",
+    "us",
+    "his",
+    "audio/chinese/我们.(🎵)",
+    "nǐ men",
+    "wǒ men de"
+  ],
+  "rights": [
+    "us",
+    "我们",
+    "audio/chinese/我们.(🎵)",
+    "wǒ men"
+  ],
+  "wrongs": [
+    "tā",
+    "you (polite)",
+    "nǐ men",
+    "wǒ men de",
+    "his"
+  ],
+  "answersChosen": [
+    false,
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+    false,
+    false
+  ],
+  "answersLegend": [
+    "❌",
+    "✅",
+    "✅",
+    "❌",
+    "✅",
+    "❌",
+    "✅",
+    "❌",
+    "❌"
+  ],
+  "select": {
+    "right": 0,
+    "wrong": 2
+  },
+  "unselect": {
+    "right": 4,
+    "wrong": 3
+  }
+}
