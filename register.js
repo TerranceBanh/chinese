@@ -1,4 +1,4 @@
-console.log('test')
+console.log('test2')
 console.log('serviceWorker' in navigator)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
