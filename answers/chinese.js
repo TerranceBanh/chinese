@@ -133,8 +133,6 @@ window['Chinese'] = {
       { cn: '孩子', pinyin: 'hái zi', en: 'child', audio: '孩子.(🎵)', }, 
       { cn: '儿子', pinyin: 'ér zi', en: 'son', audio: '儿子.(🎵)', }, 
       { cn: '女儿', pinyin: 'nǚ ér', en: 'daughter', audio: '女儿.(🎵)', }, 
-      { cn: '女婿', pinyin: 'nǚ xù', en: 'son-in-law', audio: '女婿.(🎵)', },
-      { cn: '儿媳', pinyin: 'ér xí', en: 'daughter-in-law', audio: '儿媳.(🎵)', },
       { cn: '孙女', pinyin: 'sūn nǚ', en: 'granddaughter', audio: '孙女.(🎵)', }, // Check for distinction between father's and mother's side
       { cn: '孙子', pinyin: 'sūn zi', en: 'grandson', audio: '孙子.(🎵)', }, // Check for distincition between father's and mother's side
 
@@ -166,7 +164,6 @@ window['Chinese'] = {
       { cn: '姑妈', pinyin: 'gū mā', en: 'aunt (dad\'s older sister)', audio: '姑妈.(🎵)', },
       { cn: '姨妈', pinyin: 'yí mā', en: 'aunt (mom\'s older sister)', audio: '姨妈.(🎵)', },
 
-      // FIGURE OUT THE DIFFERENCES BETWEEN COUSINS
       { cn: '表哥', pinyin: 'biǎo gē', en: 'cousin (older than you) (male) (different family name from you)', audio: '表哥.(🎵)', },
       { cn: '表弟', pinyin: 'biǎo dì', en: 'cousin (younger than you) (male) (different family name from you)', audio: '表弟.(🎵)', },
       { cn: '表妹', pinyin: 'biǎo mèi', en: 'cousin (younger than you) (female) (different family name from you)', audio: '表妹.(🎵)', },
@@ -176,11 +173,12 @@ window['Chinese'] = {
       { cn: '堂姐', pinyin: 'táng jiě', en: 'cousin (older than you) (female) (same family name as you)', audio: '堂姐.(🎵)', },
       { cn: '堂妹', pinyin: 'táng mèi', en: 'cousin (younger than you) (female) (same family name as you)', audio: '堂妹.(🎵)', },
 
-      { cn: '姐夫', pinyin: 'jiě fū', en: 'older sister\'s husband', audio: '姐夫.(🎵)', },
-      { cn: '嫂子', pinyin: 'sǎo zi', en: 'older brother\'s wife', audio: '嫂子.(🎵)', },
-      { cn: '姐夫', pinyin: 'jiě fū', en: 'older sister\'s husband', audio: '姐夫.(🎵)', },
-      { cn: '妹夫', pinyin: 'mèi fū', en: 'younger sister\'s husband', audio: '妹夫.(🎵)', },
-      { cn: '弟妹', pinyin: 'dì mèi', en: 'younger brother\'s wife', audio: '弟妹.(🎵)', },
+      { cn: '姐夫', pinyin: 'jiě fū', en: 'brother-in-law (older sister side)', audio: '姐夫.(🎵)', },
+      { cn: '嫂子', pinyin: 'sǎo zi', en: 'sister-in-law (older brother side)', audio: '嫂子.(🎵)', },
+      { cn: '妹夫', pinyin: 'mèi fū', en: 'brother-in-law (younger sister side)', audio: '妹夫.(🎵)', },
+      { cn: '弟妹', pinyin: 'dì mèi', en: 'sister-in-law (younger brother side)', audio: '弟妹.(🎵)', },
+      { cn: '女婿', pinyin: 'nǚ xù', en: 'son-in-law', audio: '女婿.(🎵)', },
+      { cn: '儿媳', pinyin: 'ér xí', en: 'daughter-in-law', audio: '儿媳.(🎵)', },
 
       { cn: '侄子', pinyin: 'zhí zi', en: 'nephew (brother\'s side)', audio: '侄子.(🎵)', },
       { cn: '侄女', pinyin: 'zhí nǚ', en: 'niece (brother\'s side)', audio: '侄女.(🎵)', },
